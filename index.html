@@ -1,4 +1,4 @@
--
+```html
 <!DOCTYPE html>
 <html lang="es">
 
@@ -1377,13 +1377,72 @@
 </footer>
 
 
+<!-- =====================================================
+     SUPABASE
+===================================================== -->
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+
 <script>
+
+
+/* =====================================================
+   CONEXIÓN CON SUPABASE
+===================================================== */
+
+
+/*
+   PEGÁ ACÁ LOS DATOS DE TU PROYECTO SUPABASE
+*/
+
+
+const SUPABASE_URL =
+    "https://ibquqvdigojpoqedrpsv.supabase.co/rest/v1/";
+
+
+const SUPABASE_PUBLISHABLE_KEY =
+    "sb_publishable_njPz3hR-SUlc4riTLiQHVA_biW2Xuov";
+
+
+const supabase =
+    window.supabase.createClient(
+
+        SUPABASE_URL,
+
+        SUPABASE_PUBLISHABLE_KEY
+
+    );
 
 
 /* =====================================================
    DATOS
 ===================================================== */
+async function cargarProductosDesdeSupabase() {
 
+    const { data, error } = await supabase
+        .from("productos")
+        .select("*")
+        .order("id", { ascending: true });
+
+    if (error) {
+
+        console.error("Error al cargar productos:", error);
+
+        alert(
+            "❌ No se pudieron cargar los productos desde Supabase."
+        );
+
+        return;
+
+    }
+
+    console.log(
+        "✅ Productos cargados desde Supabase:",
+        data
+    );
+
+}
 
 let productos =
 
@@ -2876,12 +2935,6 @@ function editarProducto(indice) {
             producto.precio;
 
 
-        /*
-           Si el nuevo stock es menor
-           que la cantidad del carrito,
-           ajustamos el carrito.
-        */
-
         if (
             itemCarrito.cantidad >
             producto.stock
@@ -3180,10 +3233,6 @@ function enviarWhatsApp() {
     );
 
 
-    /*
-       Guardamos el nuevo stock
-    */
-
     guardarProductos();
 
 
@@ -3237,6 +3286,7 @@ function enviarWhatsApp() {
    INICIO
 ===================================================== */
 
+cargarProductosDesdeSupabase();
 
 mostrarCategorias();
 
