@@ -1491,7 +1491,7 @@ async function agregarProducto() {
 
     const { data, error } =
         await clienteSupabase
-            .from("Productos")
+            .from("productos")
             .insert([{
 
                 Nombre: nombre,
