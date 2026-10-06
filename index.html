@@ -1,0 +1,3258 @@
+-
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Lo de luisa - Productos de Limpieza </title>
+
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+
+        body {
+
+            font-family: Arial, sans-serif;
+
+            background: #f4f6f8;
+
+            color: #222;
+
+        }
+
+
+        /* =========================
+           ENCABEZADO
+        ========================= */
+
+        header {
+
+            background: #1976d2;
+
+            color: white;
+
+            padding: 20px;
+
+            text-align: center;
+
+        }
+
+
+        header h1 {
+
+            margin-bottom: 5px;
+
+        }
+
+
+        header p {
+
+            opacity: 0.9;
+
+        }
+
+
+        /* =========================
+           NAVEGACIÓN
+        ========================= */
+
+        nav {
+
+            background: white;
+
+            display: flex;
+
+            justify-content: center;
+
+            flex-wrap: wrap;
+
+            gap: 10px;
+
+            padding: 15px;
+
+            box-shadow:
+                0 2px 8px rgba(0,0,0,0.1);
+
+            position: sticky;
+
+            top: 0;
+
+            z-index: 100;
+
+        }
+
+
+        nav button {
+
+            border: none;
+
+            background: #eeeeee;
+
+            padding: 12px 18px;
+
+            border-radius: 10px;
+
+            cursor: pointer;
+
+            font-size: 15px;
+
+            transition: 0.2s;
+
+        }
+
+
+        nav button:hover {
+
+            background: #1976d2;
+
+            color: white;
+
+        }
+
+
+        /* =========================
+           PÁGINAS
+        ========================= */
+
+        .pagina {
+
+            display: none;
+
+            max-width: 1200px;
+
+            margin: auto;
+
+            padding: 30px 20px;
+
+        }
+
+
+        .pagina.activa {
+
+            display: block;
+
+        }
+
+
+        .titulo-pagina {
+
+            text-align: center;
+
+            margin-bottom: 25px;
+
+        }
+
+
+        /* =========================
+           BUSCADOR
+        ========================= */
+
+        #buscador {
+
+            width: 100%;
+
+            max-width: 600px;
+
+            display: block;
+
+            margin: 0 auto 20px auto;
+
+            padding: 14px;
+
+            border: 1px solid #ccc;
+
+            border-radius: 10px;
+
+            font-size: 16px;
+
+        }
+
+
+        /* =========================
+           CATEGORÍAS
+        ========================= */
+
+        #categorias {
+
+            display: flex;
+
+            justify-content: center;
+
+            flex-wrap: wrap;
+
+            gap: 10px;
+
+            margin-bottom: 25px;
+
+        }
+
+
+        #categorias button {
+
+            padding: 10px 16px;
+
+            border: none;
+
+            border-radius: 20px;
+
+            background: #ddd;
+
+            cursor: pointer;
+
+        }
+
+
+        #categorias button:hover {
+
+            background: #1976d2;
+
+            color: white;
+
+        }
+
+
+        /* =========================
+           PRODUCTOS
+        ========================= */
+
+        #listaProductos {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(auto-fit, minmax(230px, 1fr));
+
+            gap: 20px;
+
+        }
+
+
+        .producto {
+
+            background: white;
+
+            border-radius: 15px;
+
+            padding: 15px;
+
+            box-shadow:
+                0 3px 10px rgba(0,0,0,0.1);
+
+            text-align: center;
+
+        }
+
+
+        .producto img {
+
+            width: 100%;
+
+            height: 200px;
+
+            object-fit: contain;
+
+            border-radius: 10px;
+
+            margin-bottom: 10px;
+
+        }
+
+
+        .producto h3 {
+
+            margin-bottom: 8px;
+
+        }
+
+
+        .categoria {
+
+            color: #777;
+
+            font-size: 14px;
+
+            margin-bottom: 8px;
+
+        }
+
+
+        .precio {
+
+            font-size: 21px;
+
+            font-weight: bold;
+
+            color: #1976d2;
+
+            margin-bottom: 10px;
+
+        }
+
+
+        /* =========================
+           STOCK PRODUCTO
+        ========================= */
+
+        .stock {
+
+            font-weight: bold;
+
+            margin-bottom: 12px;
+
+            color: #2e7d32;
+
+        }
+
+
+        .stock-bajo {
+
+            color: #f57c00;
+
+        }
+
+
+        .sin-stock {
+
+            color: #d32f2f;
+
+        }
+
+
+        .producto button {
+
+            background: #1976d2;
+
+            color: white;
+
+            border: none;
+
+            padding: 11px 18px;
+
+            border-radius: 8px;
+
+            cursor: pointer;
+
+        }
+
+
+        .producto button:hover {
+
+            background: #125ca8;
+
+        }
+
+
+        .producto button:disabled {
+
+            background: #aaa;
+
+            cursor: not-allowed;
+
+        }
+
+
+        /* =========================
+           CARRITO
+        ========================= */
+
+        .item-carrito {
+
+            background: white;
+
+            padding: 15px;
+
+            margin-bottom: 12px;
+
+            border-radius: 10px;
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            gap: 15px;
+
+            flex-wrap: wrap;
+
+            box-shadow:
+                0 2px 8px rgba(0,0,0,0.08);
+
+        }
+
+
+        .cantidad button {
+
+            border: none;
+
+            background: #1976d2;
+
+            color: white;
+
+            width: 30px;
+
+            height: 30px;
+
+            border-radius: 6px;
+
+            cursor: pointer;
+
+        }
+
+
+        .boton-eliminar {
+
+            background: #d32f2f !important;
+
+        }
+
+
+        .total {
+
+            background: white;
+
+            padding: 20px;
+
+            border-radius: 12px;
+
+            margin-top: 20px;
+
+            text-align: right;
+
+            font-size: 24px;
+
+            font-weight: bold;
+
+        }
+
+
+        .boton-whatsapp {
+
+            display: block;
+
+            width: 100%;
+
+            max-width: 500px;
+
+            margin: 20px auto;
+
+            background: #25d366;
+
+            color: white;
+
+            border: none;
+
+            padding: 15px;
+
+            border-radius: 10px;
+
+            font-size: 18px;
+
+            cursor: pointer;
+
+        }
+
+
+        .boton-whatsapp:hover {
+
+            background: #1ebe5d;
+
+        }
+
+
+        /* =========================
+           UBICACIÓN
+        ========================= */
+
+        .ubicacion-contenedor {
+
+            background: white;
+
+            border-radius: 15px;
+
+            padding: 25px;
+
+            box-shadow:
+                0 3px 10px rgba(0,0,0,0.1);
+
+            text-align: center;
+
+        }
+
+
+        .direccion {
+
+            font-size: 20px;
+
+            margin: 15px 0 20px;
+
+            font-weight: bold;
+
+        }
+
+
+        .mapa {
+
+            width: 100%;
+
+            height: 450px;
+
+            border: 0;
+
+            border-radius: 12px;
+
+        }
+
+
+        .boton-maps {
+
+            display: inline-block;
+
+            margin-top: 20px;
+
+            background: #1976d2;
+
+            color: white;
+
+            text-decoration: none;
+
+            padding: 13px 22px;
+
+            border-radius: 9px;
+
+        }
+
+
+        .boton-maps:hover {
+
+            background: #125ca8;
+
+        }
+
+
+        /* =========================
+           MEDIOS DE PAGO
+        ========================= */
+
+        .pagos {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(auto-fit, minmax(250px, 1fr));
+
+            gap: 20px;
+
+        }
+
+
+        .pago {
+
+            background: white;
+
+            border-radius: 15px;
+
+            padding: 30px 20px;
+
+            text-align: center;
+
+            box-shadow:
+                0 3px 10px rgba(0,0,0,0.1);
+
+        }
+
+
+        .icono-pago {
+
+            font-size: 55px;
+
+            margin-bottom: 15px;
+
+        }
+
+
+        .pago h3 {
+
+            margin-bottom: 10px;
+
+            font-size: 22px;
+
+        }
+
+
+        .pago p {
+
+            color: #666;
+
+            line-height: 1.5;
+
+        }
+
+
+        .alias {
+
+            display: inline-block;
+
+            margin-top: 15px;
+
+            padding: 12px 18px;
+
+            background: #eeeeee;
+
+            border-radius: 8px;
+
+            font-weight: bold;
+
+            font-size: 18px;
+
+        }
+
+
+        /* =========================
+           LOGIN
+        ========================= */
+
+        .login {
+
+            max-width: 400px;
+
+            margin: 40px auto;
+
+            background: white;
+
+            padding: 30px;
+
+            border-radius: 15px;
+
+            box-shadow:
+                0 3px 12px rgba(0,0,0,0.12);
+
+            text-align: center;
+
+        }
+
+
+        .login h2 {
+
+            margin-bottom: 20px;
+
+        }
+
+
+        .login input {
+
+            width: 100%;
+
+            padding: 13px;
+
+            margin-bottom: 12px;
+
+            border: 1px solid #ccc;
+
+            border-radius: 8px;
+
+            font-size: 16px;
+
+        }
+
+
+        .login button {
+
+            width: 100%;
+
+            padding: 13px;
+
+            border: none;
+
+            border-radius: 8px;
+
+            background: #1976d2;
+
+            color: white;
+
+            cursor: pointer;
+
+            font-size: 16px;
+
+        }
+
+
+        #mensajeLogin {
+
+            margin-top: 15px;
+
+            color: #d32f2f;
+
+        }
+
+
+        /* =========================
+           ADMINISTRACIÓN
+        ========================= */
+
+        .admin-form {
+
+            background: white;
+
+            padding: 25px;
+
+            border-radius: 15px;
+
+            margin-bottom: 30px;
+
+            box-shadow:
+                0 3px 10px rgba(0,0,0,0.1);
+
+        }
+
+
+        .admin-form input {
+
+            width: 100%;
+
+            padding: 12px;
+
+            margin-bottom: 12px;
+
+            border: 1px solid #ccc;
+
+            border-radius: 8px;
+
+        }
+
+
+        .admin-form button {
+
+            background: #1976d2;
+
+            color: white;
+
+            border: none;
+
+            padding: 12px 20px;
+
+            border-radius: 8px;
+
+            cursor: pointer;
+
+        }
+
+
+        .tabla-contenedor {
+
+            overflow-x: auto;
+
+            background: white;
+
+            border-radius: 12px;
+
+            padding: 10px;
+
+        }
+
+
+        table {
+
+            width: 100%;
+
+            border-collapse: collapse;
+
+        }
+
+
+        th,
+        td {
+
+            padding: 12px;
+
+            border-bottom: 1px solid #ddd;
+
+            text-align: center;
+
+        }
+
+
+        th {
+
+            background: #1976d2;
+
+            color: white;
+
+        }
+
+
+        .boton-editar {
+
+            background: #f9a825;
+
+            color: white;
+
+            border: none;
+
+            padding: 8px 12px;
+
+            border-radius: 6px;
+
+            cursor: pointer;
+
+        }
+
+
+        .boton-borrar {
+
+            background: #d32f2f;
+
+            color: white;
+
+            border: none;
+
+            padding: 8px 12px;
+
+            border-radius: 6px;
+
+            cursor: pointer;
+
+        }
+
+
+        .cerrar-sesion {
+
+            background: #555 !important;
+
+            margin-bottom: 20px;
+
+        }
+
+
+        /* =========================
+           PIE
+        ========================= */
+
+        footer {
+
+            margin-top: 40px;
+
+            background: #1976d2;
+
+            color: white;
+
+            text-align: center;
+
+            padding: 20px;
+
+        }
+
+
+        /* =========================
+           CELULAR
+        ========================= */
+
+        @media (max-width: 600px) {
+
+            nav button {
+
+                width: 100%;
+
+            }
+
+
+            .mapa {
+
+                height: 350px;
+
+            }
+
+
+            .item-carrito {
+
+                flex-direction: column;
+
+                text-align: center;
+
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     ENCABEZADO
+===================================================== -->
+
+<header>
+
+    <h1>
+        🧼 Lo de Luisa 🧼
+    </h1>
+
+    <p>
+        Todo para la limpieza de tu hogar
+    </p>
+
+</header>
+
+
+<!-- =====================================================
+     NAVEGACIÓN
+===================================================== -->
+
+<nav>
+
+    <button onclick="mostrarPagina('productos')">
+        🧴 Productos
+    </button>
+
+    <button onclick="mostrarPagina('carrito')">
+        🛒 Carrito
+        (<span id="contadorCarrito">0</span>)
+    </button>
+
+    <button onclick="mostrarPagina('ubicacion')">
+        📍 Ubicación
+    </button>
+
+    <button onclick="mostrarPagina('pagos')">
+        💳 Medios de pago
+    </button>
+
+    <button onclick="abrirAdministracion()">
+        ⚙️ Administración
+    </button>
+
+</nav>
+
+
+<!-- =====================================================
+     PRODUCTOS
+===================================================== -->
+
+<section
+    id="productos"
+    class="pagina activa"
+>
+
+    <h2 class="titulo-pagina">
+        🧴 Nuestros productos
+    </h2>
+
+
+    <input
+        type="text"
+        id="buscador"
+        placeholder="🔎 Buscar producto..."
+        oninput="mostrarProductos()"
+    >
+
+
+    <div id="categorias"></div>
+
+
+    <div id="listaProductos"></div>
+
+</section>
+
+
+<!-- =====================================================
+     CARRITO
+===================================================== -->
+
+<section
+    id="carrito"
+    class="pagina"
+>
+
+    <h2 class="titulo-pagina">
+        🛒 Tu carrito
+    </h2>
+
+
+    <div id="contenidoCarrito"></div>
+
+
+    <div class="total">
+
+        Total:
+
+        <span id="totalCarrito">
+            $0
+        </span>
+
+    </div>
+
+
+    <button
+        class="boton-whatsapp"
+        onclick="enviarWhatsApp()"
+    >
+
+        📱 Realizar pedido por WhatsApp
+
+    </button>
+
+</section>
+
+
+<!-- =====================================================
+     UBICACIÓN
+===================================================== -->
+
+<section
+    id="ubicacion"
+    class="pagina"
+>
+
+    <h2 class="titulo-pagina">
+        📍 Nuestra ubicación
+    </h2>
+
+
+    <div class="ubicacion-contenedor">
+
+        <p>
+            Encontranos en:
+        </p>
+
+
+        <div class="direccion">
+
+            📍 Berón de Astrada 2710
+            <br>
+
+            Remedios de Escalada, Lanús
+            <br>
+
+            Buenos Aires
+
+        </div>
+
+
+        <iframe
+
+            class="mapa"
+
+            src="https://www.google.com/maps?q=Berón%20de%20Astrada%202710,%20Remedios%20de%20Escalada,%20Lanús,%20Buenos%20Aires&output=embed"
+
+            loading="lazy"
+
+            allowfullscreen>
+
+        </iframe>
+
+
+        <a
+
+            class="boton-maps"
+
+            href="https://www.google.com/maps/search/?api=1&query=Berón%20de%20Astrada%202710,%20Remedios%20de%20Escalada,%20Lanús,%20Buenos%20Aires"
+
+            target="_blank"
+
+        >
+
+            🗺️ Abrir en Google Maps
+
+        </a>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     MEDIOS DE PAGO
+===================================================== -->
+
+<section
+    id="pagos"
+    class="pagina"
+>
+
+    <h2 class="titulo-pagina">
+        💳 Medios de pago
+    </h2>
+
+
+    <div class="pagos">
+
+
+        <div class="pago">
+
+            <div class="icono-pago">
+                💵
+            </div>
+
+            <h3>
+                Efectivo
+            </h3>
+
+            <p>
+                Podés abonar tu compra en efectivo.
+            </p>
+
+        </div>
+
+
+        <div class="pago">
+
+            <div class="icono-pago">
+                💳
+            </div>
+
+            <h3>
+                Transferencia
+            </h3>
+
+            <p>
+                También podés realizar una transferencia bancaria.
+            </p>
+
+        </div>
+
+
+        <div class="pago">
+
+            <div class="icono-pago">
+                🟦
+            </div>
+
+            <h3>
+                Mercado Pago
+            </h3>
+
+            <p>
+                Podés realizar el pago mediante Mercado Pago.
+            </p>
+
+
+            <div class="alias">
+
+                Alias: AntoniaLuisa.mp
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     LOGIN
+===================================================== -->
+
+<section
+    id="loginAdmin"
+    class="pagina"
+>
+
+    <div class="login">
+
+        <h2>
+            🔐 Administración
+        </h2>
+
+
+        <p style="margin-bottom:20px;">
+
+            Ingresá tus datos para continuar
+
+        </p>
+
+
+        <input
+            type="text"
+            id="usuarioAdmin"
+            placeholder="Usuario"
+        >
+
+
+        <input
+            type="password"
+            id="passwordAdmin"
+            placeholder="Contraseña"
+        >
+
+
+        <button onclick="iniciarSesion()">
+
+            🔓 Ingresar
+
+        </button>
+
+
+        <p id="mensajeLogin"></p>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     ADMINISTRACIÓN
+===================================================== -->
+
+<section
+    id="administracion"
+    class="pagina"
+>
+
+    <h2 class="titulo-pagina">
+
+        ⚙️ Administración
+
+    </h2>
+
+
+    <button
+
+        class="cerrar-sesion"
+
+        onclick="cerrarSesion()"
+
+    >
+
+        🚪 Cerrar sesión
+
+    </button>
+
+
+    <!-- FORMULARIO -->
+
+    <div class="admin-form">
+
+
+        <h3 style="margin-bottom:20px;">
+
+            ➕ Agregar producto
+
+        </h3>
+
+
+        <input
+
+            type="text"
+
+            id="nombreProducto"
+
+            placeholder="Nombre del producto"
+
+        >
+
+
+        <input
+
+            type="number"
+
+            id="precioProducto"
+
+            placeholder="Precio"
+
+        >
+
+
+        <input
+
+            type="text"
+
+            id="categoriaProducto"
+
+            placeholder="Categoría"
+
+        >
+
+
+        <input
+
+            type="number"
+
+            id="stockProducto"
+
+            placeholder="Cantidad de stock"
+
+            min="0"
+
+        >
+
+
+        <input
+
+            type="text"
+
+            id="imagenProducto"
+
+            placeholder="URL de la imagen"
+
+        >
+
+
+        <button onclick="agregarProducto()">
+
+            ➕ Agregar producto
+
+        </button>
+
+    </div>
+
+
+    <!-- TABLA -->
+
+    <div class="tabla-contenedor">
+
+
+        <table>
+
+
+            <thead>
+
+                <tr>
+
+                    <th>
+                        Producto
+                    </th>
+
+                    <th>
+                        Precio
+                    </th>
+
+                    <th>
+                        Categoría
+                    </th>
+
+                    <th>
+                        Stock
+                    </th>
+
+                    <th>
+                        Acciones
+                    </th>
+
+                </tr>
+
+            </thead>
+
+
+            <tbody
+                id="tablaAdmin"
+            ></tbody>
+
+
+        </table>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     PIE
+===================================================== -->
+
+<footer>
+
+    <p>
+        🧼 Productos de Limpieza
+    </p>
+
+</footer>
+
+
+<script>
+
+
+/* =====================================================
+   DATOS
+===================================================== */
+
+
+let productos =
+
+    JSON.parse(
+        localStorage.getItem("productos")
+    ) || [];
+
+
+let carrito =
+
+    JSON.parse(
+        localStorage.getItem("carrito")
+    ) || [];
+
+
+let categoriaSeleccionada =
+    "Todas";
+
+
+let usuarioLogueado =
+    false;
+
+
+/* =====================================================
+   WHATSAPP
+===================================================== */
+
+
+const NUMERO_WHATSAPP =
+    "5491138473146";
+
+
+/* =====================================================
+   FORMATO DE PRECIO
+===================================================== */
+
+
+function formatoPrecio(numero) {
+
+    return new Intl.NumberFormat(
+
+        "es-AR",
+
+        {
+
+            style: "currency",
+
+            currency: "ARS"
+
+        }
+
+    ).format(numero);
+
+}
+
+
+/* =====================================================
+   GUARDAR PRODUCTOS
+===================================================== */
+
+
+function guardarProductos() {
+
+    localStorage.setItem(
+
+        "productos",
+
+        JSON.stringify(productos)
+
+    );
+
+}
+
+
+/* =====================================================
+   GUARDAR CARRITO
+===================================================== */
+
+
+function guardarCarrito() {
+
+    localStorage.setItem(
+
+        "carrito",
+
+        JSON.stringify(carrito)
+
+    );
+
+}
+
+
+/* =====================================================
+   CAMBIAR PÁGINA
+===================================================== */
+
+
+function mostrarPagina(nombre) {
+
+
+    document
+
+        .querySelectorAll(".pagina")
+
+        .forEach(pagina => {
+
+            pagina.classList.remove(
+                "activa"
+            );
+
+        });
+
+
+    const pagina =
+
+        document.getElementById(
+            nombre
+        );
+
+
+    if (pagina) {
+
+        pagina.classList.add(
+            "activa"
+        );
+
+    }
+
+}
+
+
+/* =====================================================
+   ADMINISTRACIÓN
+===================================================== */
+
+
+function abrirAdministracion() {
+
+
+    if (usuarioLogueado) {
+
+        mostrarPagina(
+            "administracion"
+        );
+
+    }
+
+    else {
+
+        document.getElementById(
+            "usuarioAdmin"
+        ).value = "";
+
+
+        document.getElementById(
+            "passwordAdmin"
+        ).value = "";
+
+
+        document.getElementById(
+            "mensajeLogin"
+        ).textContent = "";
+
+
+        mostrarPagina(
+            "loginAdmin"
+        );
+
+    }
+
+}
+
+
+/* =====================================================
+   LOGIN
+===================================================== */
+
+
+function iniciarSesion() {
+
+
+    const usuario =
+
+        document.getElementById(
+            "usuarioAdmin"
+        ).value;
+
+
+    const password =
+
+        document.getElementById(
+            "passwordAdmin"
+        ).value;
+
+
+    if (
+
+        usuario === "ADM" &&
+
+        password === "ADM"
+
+    ) {
+
+
+        usuarioLogueado =
+            true;
+
+
+        document.getElementById(
+            "usuarioAdmin"
+        ).value = "";
+
+
+        document.getElementById(
+            "passwordAdmin"
+        ).value = "";
+
+
+        mostrarPagina(
+            "administracion"
+        );
+
+    }
+
+    else {
+
+
+        document.getElementById(
+            "mensajeLogin"
+        ).textContent =
+
+            "❌ Usuario o contraseña incorrectos.";
+
+    }
+
+}
+
+
+/* =====================================================
+   CERRAR SESIÓN
+===================================================== */
+
+
+function cerrarSesion() {
+
+    usuarioLogueado =
+        false;
+
+
+    mostrarPagina(
+        "productos"
+    );
+
+}
+
+
+/* =====================================================
+   AGREGAR PRODUCTO
+===================================================== */
+
+
+function agregarProducto() {
+
+
+    if (!usuarioLogueado) {
+
+        return;
+
+    }
+
+
+    const nombre =
+
+        document.getElementById(
+            "nombreProducto"
+        ).value.trim();
+
+
+    const precio =
+
+        Number(
+
+            document.getElementById(
+                "precioProducto"
+            ).value
+
+        );
+
+
+    const categoria =
+
+        document.getElementById(
+            "categoriaProducto"
+        ).value.trim();
+
+
+    const stock =
+
+        Number(
+
+            document.getElementById(
+                "stockProducto"
+            ).value
+
+        );
+
+
+    const imagen =
+
+        document.getElementById(
+            "imagenProducto"
+        ).value.trim();
+
+
+    if (
+
+        !nombre ||
+
+        !precio ||
+
+        !categoria
+
+    ) {
+
+        alert(
+            "Completá nombre, precio y categoría."
+        );
+
+        return;
+
+    }
+
+
+    if (stock < 0) {
+
+        alert(
+            "El stock no puede ser negativo."
+        );
+
+        return;
+
+    }
+
+
+    productos.push({
+
+        id: Date.now(),
+
+        nombre: nombre,
+
+        precio: precio,
+
+        categoria: categoria,
+
+        stock: stock,
+
+        imagen:
+
+            imagen ||
+
+            "https://via.placeholder.com/300x200?text=Producto"
+
+    });
+
+
+    guardarProductos();
+
+
+    document.getElementById(
+        "nombreProducto"
+    ).value = "";
+
+
+    document.getElementById(
+        "precioProducto"
+    ).value = "";
+
+
+    document.getElementById(
+        "categoriaProducto"
+    ).value = "";
+
+
+    document.getElementById(
+        "stockProducto"
+    ).value = "";
+
+
+    document.getElementById(
+        "imagenProducto"
+    ).value = "";
+
+
+    mostrarCategorias();
+
+    mostrarProductos();
+
+    mostrarAdmin();
+
+
+    alert(
+        "✅ Producto agregado correctamente."
+    );
+
+}
+
+
+/* =====================================================
+   CATEGORÍAS
+===================================================== */
+
+
+function mostrarCategorias() {
+
+
+    const contenedor =
+
+        document.getElementById(
+            "categorias"
+        );
+
+
+    const categorias = [
+
+        "Todas",
+
+        ...new Set(
+
+            productos.map(
+
+                producto =>
+                    producto.categoria
+
+            )
+
+        )
+
+    ];
+
+
+    contenedor.innerHTML = "";
+
+
+    categorias.forEach(
+
+        categoria => {
+
+
+            const boton =
+
+                document.createElement(
+                    "button"
+                );
+
+
+            boton.textContent =
+                categoria;
+
+
+            boton.onclick =
+
+                function() {
+
+
+                    categoriaSeleccionada =
+                        categoria;
+
+
+                    mostrarProductos();
+
+                };
+
+
+            contenedor.appendChild(
+                boton
+            );
+
+        }
+
+    );
+
+}
+
+
+/* =====================================================
+   MOSTRAR PRODUCTOS
+===================================================== */
+
+
+function mostrarProductos() {
+
+
+    const contenedor =
+
+        document.getElementById(
+            "listaProductos"
+        );
+
+
+    const textoBusqueda =
+
+        document
+
+            .getElementById(
+                "buscador"
+            )
+
+            .value
+
+            .toLowerCase();
+
+
+    const filtrados =
+
+        productos.filter(
+
+            producto => {
+
+
+                const coincideNombre =
+
+                    producto.nombre
+
+                        .toLowerCase()
+
+                        .includes(
+                            textoBusqueda
+                        );
+
+
+                const coincideCategoria =
+
+                    categoriaSeleccionada ===
+                    "Todas"
+
+                    ||
+
+                    producto.categoria ===
+                    categoriaSeleccionada;
+
+
+                return (
+
+                    coincideNombre &&
+
+                    coincideCategoria
+
+                );
+
+            }
+
+        );
+
+
+    contenedor.innerHTML = "";
+
+
+    if (
+        filtrados.length === 0
+    ) {
+
+        contenedor.innerHTML =
+
+            "<p style='text-align:center;'>No hay productos disponibles.</p>";
+
+        return;
+
+    }
+
+
+    filtrados.forEach(
+
+        producto => {
+
+
+            const div =
+
+                document.createElement(
+                    "div"
+                );
+
+
+            div.className =
+                "producto";
+
+
+            let textoStock = "";
+
+            let claseStock = "";
+
+            let botonDeshabilitado =
+                "";
+
+
+            if (
+                producto.stock <= 0
+            ) {
+
+                textoStock =
+                    "🔴 Sin stock";
+
+                claseStock =
+                    "sin-stock";
+
+                botonDeshabilitado =
+                    "disabled";
+
+            }
+
+            else if (
+                producto.stock <= 5
+            ) {
+
+                textoStock =
+
+                    "🟠 " +
+                    producto.stock +
+                    " disponibles";
+
+                claseStock =
+                    "stock-bajo";
+
+            }
+
+            else {
+
+                textoStock =
+
+                    "🟢 " +
+                    producto.stock +
+                    " disponibles";
+
+                claseStock =
+                    "stock";
+
+            }
+
+
+            div.innerHTML = `
+
+                <img
+
+                    src="${producto.imagen}"
+
+                    alt="${producto.nombre}"
+
+                    onerror="this.src='https://via.placeholder.com/300x200?text=Sin+imagen'"
+
+                >
+
+
+                <h3>
+
+                    ${producto.nombre}
+
+                </h3>
+
+
+                <div class="categoria">
+
+                    ${producto.categoria}
+
+                </div>
+
+
+                <div class="precio">
+
+                    ${formatoPrecio(
+                        producto.precio
+                    )}
+
+                </div>
+
+
+                <div class="stock ${claseStock}">
+
+                    ${textoStock}
+
+                </div>
+
+
+                <button
+
+                    onclick="agregarAlCarrito(${producto.id})"
+
+                    ${botonDeshabilitado}
+
+                >
+
+                    🛒 Agregar al carrito
+
+                </button>
+
+            `;
+
+
+            contenedor.appendChild(
+                div
+            );
+
+        }
+
+    );
+
+}
+
+
+/* =====================================================
+   AGREGAR AL CARRITO
+===================================================== */
+
+
+function agregarAlCarrito(id) {
+
+
+    const producto =
+
+        productos.find(
+
+            producto =>
+                producto.id === id
+
+        );
+
+
+    if (!producto) {
+
+        return;
+
+    }
+
+
+    if (
+        producto.stock <= 0
+    ) {
+
+        alert(
+            "❌ Este producto no tiene stock."
+        );
+
+        return;
+
+    }
+
+
+    const existente =
+
+        carrito.find(
+
+            item =>
+                item.id === id
+
+        );
+
+
+    const cantidadActual =
+
+        existente
+            ? existente.cantidad
+            : 0;
+
+
+    if (
+
+        cantidadActual >=
+        producto.stock
+
+    ) {
+
+        alert(
+
+            "❌ No podés agregar más unidades de las disponibles."
+
+        );
+
+        return;
+
+    }
+
+
+    if (existente) {
+
+        existente.cantidad++;
+
+    }
+
+    else {
+
+        carrito.push({
+
+            id: producto.id,
+
+            nombre: producto.nombre,
+
+            precio: producto.precio,
+
+            cantidad: 1
+
+        });
+
+    }
+
+
+    guardarCarrito();
+
+    mostrarCarrito();
+
+    actualizarContador();
+
+}
+
+
+/* =====================================================
+   MOSTRAR CARRITO
+===================================================== */
+
+
+function mostrarCarrito() {
+
+
+    const contenedor =
+
+        document.getElementById(
+            "contenidoCarrito"
+        );
+
+
+    contenedor.innerHTML = "";
+
+
+    if (
+        carrito.length === 0
+    ) {
+
+        contenedor.innerHTML =
+
+            "<p style='text-align:center;'>🛒 El carrito está vacío.</p>";
+
+
+        document.getElementById(
+            "totalCarrito"
+        ).textContent =
+
+            formatoPrecio(0);
+
+
+        return;
+
+    }
+
+
+    let total = 0;
+
+
+    carrito.forEach(
+
+        item => {
+
+
+            const productoActual =
+
+                productos.find(
+
+                    producto =>
+                        producto.id ===
+                        item.id
+
+                );
+
+
+            const stockDisponible =
+
+                productoActual
+                    ? productoActual.stock
+                    : 0;
+
+
+            const subtotal =
+
+                item.precio *
+                item.cantidad;
+
+
+            total += subtotal;
+
+
+            const div =
+
+                document.createElement(
+                    "div"
+                );
+
+
+            div.className =
+                "item-carrito";
+
+
+            div.innerHTML = `
+
+                <div>
+
+                    <strong>
+
+                        ${item.nombre}
+
+                    </strong>
+
+
+                    <br>
+
+
+                    ${formatoPrecio(
+                        item.precio
+                    )} c/u
+
+                </div>
+
+
+                <div class="cantidad">
+
+
+                    <button
+
+                        onclick="disminuirCantidad(${item.id})"
+
+                    >
+
+                        -
+
+                    </button>
+
+
+                    <strong
+                        style="margin:0 10px;"
+                    >
+
+                        ${item.cantidad}
+
+                    </strong>
+
+
+                    <button
+
+                        onclick="aumentarCantidad(${item.id})"
+
+                        ${
+                            item.cantidad >=
+                            stockDisponible
+                                ? "disabled"
+                                : ""
+                        }
+
+                    >
+
+                        +
+
+                    </button>
+
+
+                </div>
+
+
+                <div>
+
+                    <strong>
+
+                        ${formatoPrecio(
+                            subtotal
+                        )}
+
+                    </strong>
+
+                </div>
+
+
+                <button
+
+                    class="boton-eliminar"
+
+                    onclick="eliminarDelCarrito(${item.id})"
+
+                >
+
+                    🗑️
+
+                </button>
+
+            `;
+
+
+            contenedor.appendChild(
+                div
+            );
+
+        }
+
+    );
+
+
+    document.getElementById(
+        "totalCarrito"
+    ).textContent =
+
+        formatoPrecio(total);
+
+}
+
+
+/* =====================================================
+   AUMENTAR CANTIDAD
+===================================================== */
+
+
+function aumentarCantidad(id) {
+
+
+    const item =
+
+        carrito.find(
+
+            item =>
+                item.id === id
+
+        );
+
+
+    const producto =
+
+        productos.find(
+
+            producto =>
+                producto.id === id
+
+        );
+
+
+    if (
+        !item ||
+        !producto
+    ) {
+
+        return;
+
+    }
+
+
+    if (
+        item.cantidad >=
+        producto.stock
+    ) {
+
+        alert(
+
+            "❌ No hay más unidades disponibles."
+
+        );
+
+        return;
+
+    }
+
+
+    item.cantidad++;
+
+
+    guardarCarrito();
+
+    mostrarCarrito();
+
+    actualizarContador();
+
+}
+
+
+/* =====================================================
+   DISMINUIR CANTIDAD
+===================================================== */
+
+
+function disminuirCantidad(id) {
+
+
+    const item =
+
+        carrito.find(
+
+            item =>
+                item.id === id
+
+        );
+
+
+    if (!item) {
+
+        return;
+
+    }
+
+
+    item.cantidad--;
+
+
+    if (
+        item.cantidad <= 0
+    ) {
+
+        carrito =
+
+            carrito.filter(
+
+                item =>
+                    item.id !== id
+
+            );
+
+    }
+
+
+    guardarCarrito();
+
+    mostrarCarrito();
+
+    actualizarContador();
+
+}
+
+
+/* =====================================================
+   ELIMINAR DEL CARRITO
+===================================================== */
+
+
+function eliminarDelCarrito(id) {
+
+
+    carrito =
+
+        carrito.filter(
+
+            item =>
+                item.id !== id
+
+        );
+
+
+    guardarCarrito();
+
+    mostrarCarrito();
+
+    actualizarContador();
+
+}
+
+
+/* =====================================================
+   MOSTRAR ADMIN
+===================================================== */
+
+
+function mostrarAdmin() {
+
+
+    const tabla =
+
+        document.getElementById(
+            "tablaAdmin"
+        );
+
+
+    tabla.innerHTML = "";
+
+
+    productos.forEach(
+
+        (producto, indice) => {
+
+
+            const fila =
+
+                document.createElement(
+                    "tr"
+                );
+
+
+            let estadoStock;
+
+
+            if (
+                producto.stock <= 0
+            ) {
+
+                estadoStock =
+                    "🔴 0";
+
+            }
+
+            else {
+
+                estadoStock =
+
+                    "🟢 " +
+                    producto.stock;
+
+            }
+
+
+            fila.innerHTML = `
+
+                <td>
+
+                    ${producto.nombre}
+
+                </td>
+
+
+                <td>
+
+                    ${formatoPrecio(
+                        producto.precio
+                    )}
+
+                </td>
+
+
+                <td>
+
+                    ${producto.categoria}
+
+                </td>
+
+
+                <td>
+
+                    <strong>
+
+                        ${estadoStock}
+
+                    </strong>
+
+                </td>
+
+
+                <td>
+
+
+                    <button
+
+                        class="boton-editar"
+
+                        onclick="editarProducto(${indice})"
+
+                    >
+
+                        ✏️ Editar
+
+                    </button>
+
+
+                    <button
+
+                        class="boton-borrar"
+
+                        onclick="eliminarProducto(${indice})"
+
+                    >
+
+                        🗑️ Eliminar
+
+                    </button>
+
+
+                </td>
+
+            `;
+
+
+            tabla.appendChild(
+                fila
+            );
+
+        }
+
+    );
+
+}
+
+
+/* =====================================================
+   EDITAR PRODUCTO
+===================================================== */
+
+
+function editarProducto(indice) {
+
+
+    if (!usuarioLogueado) {
+
+        return;
+
+    }
+
+
+    const producto =
+        productos[indice];
+
+
+    const nuevoNombre =
+
+        prompt(
+
+            "Nombre del producto:",
+
+            producto.nombre
+
+        );
+
+
+    if (
+        nuevoNombre === null
+    ) {
+
+        return;
+
+    }
+
+
+    const nuevoPrecio =
+
+        prompt(
+
+            "Precio:",
+
+            producto.precio
+
+        );
+
+
+    if (
+        nuevoPrecio === null
+    ) {
+
+        return;
+
+    }
+
+
+    const nuevaCategoria =
+
+        prompt(
+
+            "Categoría:",
+
+            producto.categoria
+
+        );
+
+
+    if (
+        nuevaCategoria === null
+    ) {
+
+        return;
+
+    }
+
+
+    const nuevoStock =
+
+        prompt(
+
+            "Stock disponible:",
+
+            producto.stock
+
+        );
+
+
+    if (
+        nuevoStock === null
+    ) {
+
+        return;
+
+    }
+
+
+    const nuevaImagen =
+
+        prompt(
+
+            "URL de imagen:",
+
+            producto.imagen
+
+        );
+
+
+    if (
+        nuevaImagen === null
+    ) {
+
+        return;
+
+    }
+
+
+    const stockNumerico =
+        Number(nuevoStock);
+
+
+    if (
+        stockNumerico < 0 ||
+        isNaN(stockNumerico)
+    ) {
+
+        alert(
+            "❌ El stock debe ser un número igual o mayor a 0."
+        );
+
+        return;
+
+    }
+
+
+    const precioNumerico =
+        Number(nuevoPrecio);
+
+
+    if (
+        precioNumerico <= 0 ||
+        isNaN(precioNumerico)
+    ) {
+
+        alert(
+            "❌ El precio no es válido."
+        );
+
+        return;
+
+    }
+
+
+    producto.nombre =
+        nuevoNombre.trim();
+
+
+    producto.precio =
+        precioNumerico;
+
+
+    producto.categoria =
+        nuevaCategoria.trim();
+
+
+    producto.stock =
+        stockNumerico;
+
+
+    producto.imagen =
+        nuevaImagen.trim();
+
+
+    guardarProductos();
+
+
+    /* =================================================
+       ACTUALIZAR PRODUCTO EN EL CARRITO
+    ================================================= */
+
+
+    const itemCarrito =
+
+        carrito.find(
+
+            item =>
+                item.id ===
+                producto.id
+
+        );
+
+
+    if (itemCarrito) {
+
+
+        itemCarrito.nombre =
+            producto.nombre;
+
+
+        itemCarrito.precio =
+            producto.precio;
+
+
+        /*
+           Si el nuevo stock es menor
+           que la cantidad del carrito,
+           ajustamos el carrito.
+        */
+
+        if (
+            itemCarrito.cantidad >
+            producto.stock
+        ) {
+
+            itemCarrito.cantidad =
+                producto.stock;
+
+        }
+
+
+        if (
+            itemCarrito.cantidad <= 0
+        ) {
+
+            carrito =
+
+                carrito.filter(
+
+                    item =>
+                        item.id !==
+                        producto.id
+
+                );
+
+        }
+
+
+        guardarCarrito();
+
+    }
+
+
+    mostrarCategorias();
+
+    mostrarProductos();
+
+    mostrarAdmin();
+
+    mostrarCarrito();
+
+    actualizarContador();
+
+}
+
+
+/* =====================================================
+   ELIMINAR PRODUCTO
+===================================================== */
+
+
+function eliminarProducto(indice) {
+
+
+    if (!usuarioLogueado) {
+
+        return;
+
+    }
+
+
+    const producto =
+        productos[indice];
+
+
+    const confirmar =
+
+        confirm(
+
+            `¿Querés eliminar "${producto.nombre}"?`
+
+        );
+
+
+    if (!confirmar) {
+
+        return;
+
+    }
+
+
+    carrito =
+
+        carrito.filter(
+
+            item =>
+                item.id !==
+                producto.id
+
+        );
+
+
+    productos.splice(
+        indice,
+        1
+    );
+
+
+    guardarProductos();
+
+    guardarCarrito();
+
+
+    mostrarCategorias();
+
+    mostrarProductos();
+
+    mostrarAdmin();
+
+    mostrarCarrito();
+
+    actualizarContador();
+
+}
+
+
+/* =====================================================
+   CONTADOR CARRITO
+===================================================== */
+
+
+function actualizarContador() {
+
+
+    const cantidad =
+
+        carrito.reduce(
+
+            (total, item) =>
+
+                total +
+                item.cantidad,
+
+            0
+
+        );
+
+
+    document.getElementById(
+        "contadorCarrito"
+    ).textContent =
+        cantidad;
+
+}
+
+
+/* =====================================================
+   ENVIAR WHATSAPP
+===================================================== */
+
+
+function enviarWhatsApp() {
+
+
+    if (
+        carrito.length === 0
+    ) {
+
+        alert(
+            "El carrito está vacío."
+        );
+
+        return;
+
+    }
+
+
+    /*
+       Antes de realizar la venta,
+       verificamos nuevamente el stock.
+    */
+
+
+    for (
+        const item of carrito
+    ) {
+
+
+        const producto =
+
+            productos.find(
+
+                producto =>
+                    producto.id ===
+                    item.id
+
+            );
+
+
+        if (
+            !producto ||
+            producto.stock <
+            item.cantidad
+        ) {
+
+            alert(
+
+                `❌ No hay suficiente stock de "${item.nombre}".`
+
+            );
+
+
+            mostrarCarrito();
+
+            return;
+
+        }
+
+    }
+
+
+    let mensaje =
+
+        "Hola Luisa! Quiero realizar el siguiente pedido:%0A%0A";
+
+
+    let total = 0;
+
+
+    carrito.forEach(
+
+        item => {
+
+
+            const subtotal =
+
+                item.precio *
+                item.cantidad;
+
+
+            total += subtotal;
+
+
+            mensaje +=
+
+                "• " +
+
+                item.nombre +
+
+                " x" +
+
+                item.cantidad +
+
+                " - " +
+
+                formatoPrecio(
+                    subtotal
+                ) +
+
+                "%0A";
+
+        }
+
+    );
+
+
+    mensaje +=
+
+        "%0A Total: " +
+
+        formatoPrecio(total);
+
+
+    /*
+       =================================================
+       DESCONTAR STOCK
+       =================================================
+    */
+
+
+    carrito.forEach(
+
+        item => {
+
+
+            const producto =
+
+                productos.find(
+
+                    producto =>
+                        producto.id ===
+                        item.id
+
+                );
+
+
+            if (producto) {
+
+                producto.stock -=
+                    item.cantidad;
+
+            }
+
+        }
+
+    );
+
+
+    /*
+       Guardamos el nuevo stock
+    */
+
+    guardarProductos();
+
+
+    /*
+       Vaciamos el carrito
+    */
+
+    carrito = [];
+
+
+    guardarCarrito();
+
+
+    /*
+       Actualizamos la página
+    */
+
+    mostrarProductos();
+
+    mostrarAdmin();
+
+    mostrarCarrito();
+
+    actualizarContador();
+
+
+    /*
+       Abrimos WhatsApp
+    */
+
+    const url =
+
+        "https://wa.me/" +
+
+        NUMERO_WHATSAPP +
+
+        "?text=" +
+
+        mensaje;
+
+
+    window.open(
+        url,
+        "_blank"
+    );
+
+}
+
+
+/* =====================================================
+   INICIO
+===================================================== */
+
+
+mostrarCategorias();
+
+mostrarProductos();
+
+mostrarAdmin();
+
+mostrarCarrito();
+
+actualizarContador();
+
+
+</script>
+
+
+</body>
+
+</html>
+```
