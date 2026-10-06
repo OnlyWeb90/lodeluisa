@@ -608,7 +608,7 @@
             data,
             error
         } = await clienteSupabase
-            .from("Productos")
+            .from("productos")
             .select("*")
             .order("id", {
                 ascending: true
