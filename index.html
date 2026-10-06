@@ -1237,8 +1237,6 @@
     </button>
 
 
-    <!-- FORMULARIO -->
-
     <div class="admin-form">
 
 
@@ -1315,8 +1313,6 @@
     </div>
 
 
-    <!-- TABLA -->
-
     <div class="tabla-contenedor">
 
 
@@ -1392,13 +1388,8 @@
 ===================================================== */
 
 
-/*
-   PEGÁ ACÁ LOS DATOS DE TU PROYECTO SUPABASE
-*/
-
-
 const SUPABASE_URL =
-    "https://ibquqvdigojpoqedrpsv.supabase.co/rest/v1/";
+    "https://ibquqvdigojpoqedrpsv.supabase.co";
 
 
 const SUPABASE_PUBLISHABLE_KEY =
@@ -1418,6 +1409,7 @@ const supabase =
 /* =====================================================
    DATOS
 ===================================================== */
+
 async function cargarProductosDesdeSupabase() {
 
     const { data, error } = await supabase
@@ -1425,9 +1417,13 @@ async function cargarProductosDesdeSupabase() {
         .select("*")
         .order("id", { ascending: true });
 
+
     if (error) {
 
-        console.error("Error al cargar productos:", error);
+        console.error(
+            "Error al cargar productos:",
+            error
+        );
 
         alert(
             "❌ No se pudieron cargar los productos desde Supabase."
@@ -1437,12 +1433,14 @@ async function cargarProductosDesdeSupabase() {
 
     }
 
+
     console.log(
         "✅ Productos cargados desde Supabase:",
         data
     );
 
 }
+
 
 let productos =
 
@@ -2908,11 +2906,6 @@ function editarProducto(indice) {
     guardarProductos();
 
 
-    /* =================================================
-       ACTUALIZAR PRODUCTO EN EL CARRITO
-    ================================================= */
-
-
     const itemCarrito =
 
         carrito.find(
@@ -3102,12 +3095,6 @@ function enviarWhatsApp() {
     }
 
 
-    /*
-       Antes de realizar la venta,
-       verificamos nuevamente el stock.
-    */
-
-
     for (
         const item of carrito
     ) {
@@ -3198,13 +3185,6 @@ function enviarWhatsApp() {
         formatoPrecio(total);
 
 
-    /*
-       =================================================
-       DESCONTAR STOCK
-       =================================================
-    */
-
-
     carrito.forEach(
 
         item => {
@@ -3236,19 +3216,11 @@ function enviarWhatsApp() {
     guardarProductos();
 
 
-    /*
-       Vaciamos el carrito
-    */
-
     carrito = [];
 
 
     guardarCarrito();
 
-
-    /*
-       Actualizamos la página
-    */
 
     mostrarProductos();
 
@@ -3258,10 +3230,6 @@ function enviarWhatsApp() {
 
     actualizarContador();
 
-
-    /*
-       Abrimos WhatsApp
-    */
 
     const url =
 
