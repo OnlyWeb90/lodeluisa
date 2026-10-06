@@ -1396,7 +1396,7 @@ const SUPABASE_PUBLISHABLE_KEY =
     "sb_publishable_njPz3hR-SUlc4riTLiQHVA_biW2Xuov";
 
 
-const supabase =
+const clienteSupabase =
     window.supabase.createClient(
 
         SUPABASE_URL,
@@ -1405,15 +1405,14 @@ const supabase =
 
     );
 
-
 /* =====================================================
    DATOS
 ===================================================== */
 
 async function cargarProductosDesdeSupabase() {
 
-    const { data, error } = await supabase
-        .from("productos")
+  const { data, error } = await clienteSupabase
+    .from("productos")
         .select("*")
         .order("id", { ascending: true });
 
