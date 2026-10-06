@@ -1,4 +1,4 @@
--
+```html
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -7,7 +7,6 @@
 
 <title>Lo de Luisa | Productos de limpieza</title>
 
-<!-- TIPOGRAFÍA ALEGREYA SANS -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Alegreya+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -16,32 +15,19 @@
 
 <style>
 
-/* =========================================================
-   COLORES
-========================================================= */
-
 :root {
     --azul: #102A43;
     --azul-oscuro: #071C2C;
     --azul-claro: #1F4668;
-
     --crema: #F6F0E4;
     --crema-oscura: #E9DDC8;
-
     --blanco: #FFFFFF;
-
     --texto: #263746;
     --gris: #6B7280;
-
     --verde: #2E8B57;
     --rojo: #B23A48;
     --dorado: #C49A5A;
 }
-
-
-/* =========================================================
-   GENERAL
-========================================================= */
 
 * {
     box-sizing: border-box;
@@ -53,38 +39,23 @@ html {
 
 body {
     margin: 0;
-
     font-family: "Alegreya Sans", sans-serif;
-
     background: var(--crema);
-
     color: var(--texto);
-
     font-size: 17px;
 }
 
-
-/* =========================================================
-   HEADER
-========================================================= */
-
 header {
     background: var(--azul);
-
     color: white;
-
     padding: 28px 20px 22px;
-
     text-align: center;
 }
 
 .logo {
     display: inline-flex;
-
     align-items: center;
-
     justify-content: center;
-
     gap: 12px;
 }
 
@@ -94,72 +65,41 @@ header {
 
 .logo h1 {
     margin: 0;
-
-    font-family: "Alegreya Sans", sans-serif;
-
     font-size: 42px;
-
     font-weight: 800;
-
     letter-spacing: 1px;
 }
 
 header p {
     margin: 4px 0 0;
-
     color: #E8DED0;
-
     font-size: 18px;
-
     font-weight: 500;
 }
 
-
-/* =========================================================
-   NAVBAR
-========================================================= */
-
 nav {
     background: var(--azul-oscuro);
-
     display: flex;
-
     justify-content: center;
-
     align-items: center;
-
     gap: 5px;
-
     padding: 10px;
-
     position: sticky;
-
     top: 0;
-
     z-index: 1000;
-
     box-shadow: 0 3px 10px rgba(0,0,0,0.15);
 }
 
 nav button {
     background: transparent;
-
     color: #F7F0E4;
-
     border: none;
-
     padding: 12px 17px;
-
     border-radius: 8px;
-
     cursor: pointer;
-
     font-family: "Alegreya Sans", sans-serif;
-
     font-size: 17px;
-
     font-weight: 600;
-
     transition: 0.2s;
 }
 
@@ -173,36 +113,20 @@ nav button:hover {
 
 .contador-carrito {
     background: var(--dorado);
-
     color: white;
-
     border-radius: 50%;
-
     min-width: 21px;
-
     height: 21px;
-
     display: inline-flex;
-
     align-items: center;
-
     justify-content: center;
-
     font-size: 12px;
-
     margin-left: 4px;
 }
 
-
-/* =========================================================
-   CONTENEDOR
-========================================================= */
-
 .contenedor {
     width: min(1180px, 92%);
-
     margin: auto;
-
     padding: 40px 0 70px;
 }
 
@@ -214,174 +138,101 @@ nav button:hover {
     display: block;
 }
 
-
-/* =========================================================
-   TITULOS
-========================================================= */
-
 .titulo-seccion {
     text-align: center;
-
     margin-bottom: 30px;
 }
 
 .titulo-seccion h2 {
     color: var(--azul);
-
-    font-family: "Alegreya Sans", sans-serif;
-
     font-size: 36px;
-
     font-weight: 800;
-
     margin: 0 0 6px;
 }
 
 .titulo-seccion p {
     color: var(--gris);
-
     margin: 0;
-
     font-size: 18px;
 }
 
-
-/* =========================================================
-   BUSCADOR
-========================================================= */
-
 .barra-busqueda {
     background: white;
-
     border: 1px solid var(--crema-oscura);
-
     border-radius: 12px;
-
     padding: 13px 17px;
-
     width: 100%;
-
     font-family: "Alegreya Sans", sans-serif;
-
     font-size: 17px;
-
     outline: none;
-
     margin-bottom: 18px;
 }
 
 .barra-busqueda:focus {
     border-color: var(--azul-claro);
-
     box-shadow: 0 0 0 3px rgba(16,42,67,0.08);
 }
 
-
-/* =========================================================
-   CATEGORIAS
-========================================================= */
-
 .categorias {
     display: flex;
-
     flex-wrap: wrap;
-
     gap: 8px;
-
     margin-bottom: 28px;
 }
 
 .categoria-btn {
     border: 1px solid var(--azul);
-
     background: transparent;
-
     color: var(--azul);
-
     padding: 8px 15px;
-
     border-radius: 30px;
-
     cursor: pointer;
-
     font-family: "Alegreya Sans", sans-serif;
-
     font-size: 16px;
-
     font-weight: 600;
-
     transition: 0.2s;
 }
 
 .categoria-btn:hover,
 .categoria-btn.activa {
     background: var(--azul);
-
     color: white;
 }
 
-
-/* =========================================================
-   PRODUCTOS
-========================================================= */
-
 .productos {
     display: grid;
-
-    grid-template-columns:
-        repeat(
-            auto-fill,
-            minmax(230px, 1fr)
-        );
-
+    grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
     gap: 24px;
 }
 
 .producto {
     background: white;
-
     border-radius: 16px;
-
     overflow: hidden;
-
     border: 1px solid #E6DDCE;
-
-    box-shadow:
-        0 7px 22px rgba(16,42,67,0.08);
-
+    box-shadow: 0 7px 22px rgba(16,42,67,0.08);
     transition: 0.25s;
 }
 
 .producto:hover {
     transform: translateY(-4px);
-
-    box-shadow:
-        0 12px 28px rgba(16,42,67,0.14);
+    box-shadow: 0 12px 28px rgba(16,42,67,0.14);
 }
 
 .imagen-producto {
     width: 100%;
-
     height: 200px;
-
     object-fit: cover;
-
     display: block;
 }
 
 .imagen-sin-foto {
     width: 100%;
-
     height: 200px;
-
     background: var(--crema);
-
     display: flex;
-
     align-items: center;
-
     justify-content: center;
-
     font-size: 65px;
 }
 
@@ -391,39 +242,28 @@ nav button:hover {
 
 .producto h3 {
     margin: 0 0 8px;
-
     color: var(--azul);
-
     font-size: 21px;
-
     font-weight: 700;
 }
 
 .descripcion {
     color: var(--gris);
-
     font-size: 16px;
-
     min-height: 38px;
-
     margin-bottom: 12px;
 }
 
 .precio {
     color: var(--azul);
-
     font-size: 25px;
-
     font-weight: 800;
-
     margin-bottom: 8px;
 }
 
 .stock {
     font-size: 15px;
-
     color: var(--gris);
-
     margin-bottom: 15px;
 }
 
@@ -433,36 +273,22 @@ nav button:hover {
 
 .stock.agotado {
     color: var(--rojo);
-
     font-weight: bold;
 }
 
-
-/* =========================================================
-   BOTONES
-========================================================= */
-
 .boton {
     border: none;
-
     border-radius: 9px;
-
     padding: 11px 16px;
-
     cursor: pointer;
-
     font-family: "Alegreya Sans", sans-serif;
-
     font-size: 16px;
-
     font-weight: 600;
-
     transition: 0.2s;
 }
 
 .boton-principal {
     background: var(--azul);
-
     color: white;
 }
 
@@ -472,13 +298,11 @@ nav button:hover {
 
 .boton-principal:disabled {
     background: #B8B8B8;
-
     cursor: not-allowed;
 }
 
 .boton-whatsapp {
     background: var(--verde);
-
     color: white;
 }
 
@@ -488,246 +312,148 @@ nav button:hover {
 
 .boton-editar {
     background: var(--dorado);
-
     color: white;
 }
 
 .boton-eliminar {
     background: var(--rojo);
-
     color: white;
 }
 
 .boton-secundario {
     background: var(--crema-oscura);
-
     color: var(--azul);
 }
 
-
-/* =========================================================
-   CARRITO
-========================================================= */
-
 .carrito-vacio {
     text-align: center;
-
     background: white;
-
     padding: 45px 20px;
-
     border-radius: 16px;
-
     color: var(--gris);
 }
 
 .carrito-item {
     background: white;
-
     border: 1px solid #E6DDCE;
-
     border-radius: 14px;
-
     padding: 18px;
-
     margin-bottom: 12px;
-
     display: flex;
-
     justify-content: space-between;
-
     align-items: center;
-
     gap: 15px;
-
-    box-shadow:
-        0 4px 12px rgba(16,42,67,0.05);
+    box-shadow: 0 4px 12px rgba(16,42,67,0.05);
 }
 
 .carrito-nombre {
     color: var(--azul);
-
     font-weight: bold;
-
     font-size: 19px;
 }
 
 .carrito-detalle {
     color: var(--gris);
-
     font-size: 16px;
-
     margin-top: 5px;
 }
 
 .controles-cantidad {
     display: flex;
-
     align-items: center;
-
     gap: 7px;
 }
 
 .cantidad {
     min-width: 30px;
-
     text-align: center;
-
     font-weight: bold;
 }
 
 .total-carrito {
     background: var(--azul);
-
     color: white;
-
     padding: 22px;
-
     border-radius: 14px;
-
     margin-top: 20px;
-
     font-size: 27px;
-
     font-weight: bold;
-
     text-align: right;
 }
 
 .boton-finalizar {
     width: 100%;
-
     margin-top: 15px;
-
     padding: 15px;
-
     font-size: 18px;
 }
 
-
-/* =========================================================
-   TARJETAS
-========================================================= */
-
 .tarjeta-info {
     background: white;
-
     border: 1px solid #E6DDCE;
-
     border-radius: 16px;
-
     padding: 28px;
-
-    box-shadow:
-        0 7px 20px rgba(16,42,67,0.07);
-
+    box-shadow: 0 7px 20px rgba(16,42,67,0.07);
     margin-bottom: 25px;
 }
 
 .tarjeta-info h3 {
     color: var(--azul);
-
     margin-top: 0;
-
     font-size: 25px;
-
     font-weight: 800;
 }
 
 .direccion {
     font-size: 20px;
-
     line-height: 1.7;
 }
-
-
-/* =========================================================
-   UBICACION
-========================================================= */
 
 #ubicacion {
     text-align: center;
 }
 
-#ubicacion .titulo-seccion {
-    text-align: center;
-}
-
 #ubicacion .tarjeta-info {
     max-width: 700px;
-
     margin-left: auto;
-
     margin-right: auto;
-
-    text-align: center;
-}
-
-#ubicacion .direccion {
     text-align: center;
 }
 
 .mapa {
     width: 100%;
-
     max-width: 1000px;
-
     height: 430px;
-
     border: 0;
-
     border-radius: 16px;
-
     display: block;
-
     margin: 25px auto 0;
-
-    box-shadow:
-        0 7px 20px rgba(16,42,67,0.08);
+    box-shadow: 0 7px 20px rgba(16,42,67,0.08);
 }
-
-
-/* =========================================================
-   PAGOS
-========================================================= */
 
 .pagos-grid {
     display: grid;
-
-    grid-template-columns:
-        repeat(
-            auto-fit,
-            minmax(230px, 1fr)
-        );
-
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
     gap: 20px;
 }
 
 .pago {
     background: white;
-
     border: 1px solid #E6DDCE;
-
     border-radius: 16px;
-
     padding: 28px;
-
     text-align: center;
 }
 
 .pago-icono {
     font-size: 42px;
-
     margin-bottom: 12px;
 }
 
 .pago h3 {
     color: var(--azul);
-
     margin: 5px 0 10px;
-
     font-size: 24px;
-
     font-weight: 800;
 }
 
@@ -737,76 +463,48 @@ nav button:hover {
 
 .alias {
     background: var(--crema);
-
     padding: 10px;
-
     border-radius: 8px;
-
     font-weight: bold;
-
     color: var(--azul);
 }
 
-
-/* =========================================================
-   ADMIN
-========================================================= */
-
 .admin-login {
     max-width: 450px;
-
     margin: 30px auto;
 }
 
 .formulario {
     background: white;
-
     padding: 28px;
-
     border-radius: 16px;
-
     border: 1px solid #E6DDCE;
-
-    box-shadow:
-        0 7px 20px rgba(16,42,67,0.07);
+    box-shadow: 0 7px 20px rgba(16,42,67,0.07);
 }
 
 .formulario h3 {
     color: var(--azul);
-
     margin-top: 0;
-
     font-size: 24px;
 }
 
 .formulario label {
     display: block;
-
     color: var(--azul);
-
     font-weight: 600;
-
     font-size: 16px;
-
     margin-top: 12px;
 }
 
 .formulario input,
 .formulario textarea {
     width: 100%;
-
     padding: 12px;
-
     margin-top: 6px;
-
     border: 1px solid #D8D0C2;
-
     border-radius: 8px;
-
     font-family: "Alegreya Sans", sans-serif;
-
     font-size: 16px;
-
     outline: none;
 }
 
@@ -819,47 +517,42 @@ nav button:hover {
     margin-top: 15px;
 }
 
+.usuario-conectado {
+    background: var(--crema);
+    color: var(--azul);
+    padding: 12px 15px;
+    border-radius: 9px;
+    margin-bottom: 20px;
+    font-weight: 600;
+}
+
 .admin-producto {
     background: white;
-
     border: 1px solid #E6DDCE;
-
     border-radius: 14px;
-
     padding: 18px;
-
     margin-bottom: 12px;
-
     display: flex;
-
     justify-content: space-between;
-
     align-items: center;
-
     gap: 15px;
 }
 
 .admin-nombre {
     color: var(--azul);
-
     font-weight: bold;
-
     font-size: 19px;
 }
 
 .admin-datos {
     color: var(--gris);
-
     font-size: 16px;
-
     margin-top: 5px;
 }
 
 .acciones {
     display: flex;
-
     gap: 8px;
-
     flex-wrap: wrap;
 }
 
@@ -867,31 +560,17 @@ nav button:hover {
     display: none !important;
 }
 
-
-/* =========================================================
-   FOOTER
-========================================================= */
-
 footer {
     background: var(--azul-oscuro);
-
     color: #E8DED0;
-
     text-align: center;
-
     padding: 25px 15px;
-
     font-size: 17px;
 }
 
 footer strong {
     color: white;
 }
-
-
-/* =========================================================
-   RESPONSIVE
-========================================================= */
 
 @media (max-width: 700px) {
 
@@ -901,19 +580,16 @@ footer strong {
 
     nav {
         overflow-x: auto;
-
         justify-content: flex-start;
     }
 
     nav button {
         white-space: nowrap;
-
         font-size: 15px;
     }
 
     .contenedor {
         width: 94%;
-
         padding-top: 28px;
     }
 
@@ -922,9 +598,7 @@ footer strong {
     }
 
     .productos {
-        grid-template-columns:
-            repeat(2, minmax(0, 1fr));
-
+        grid-template-columns: repeat(2, minmax(0, 1fr));
         gap: 12px;
     }
 
@@ -947,7 +621,6 @@ footer strong {
 
     .carrito-item {
         flex-direction: column;
-
         align-items: flex-start;
     }
 
@@ -961,14 +634,12 @@ footer strong {
 
     .admin-producto {
         flex-direction: column;
-
         align-items: flex-start;
     }
 
     .mapa {
         height: 330px;
     }
-
 }
 
 </style>
@@ -976,24 +647,17 @@ footer strong {
 
 <body>
 
-
 <header>
 
     <div class="logo">
 
-        <div class="logo-icon">
-            🧼
-        </div>
+        <div class="logo-icon">🧼</div>
 
         <div>
 
-            <h1>
-                Lo de Luisa
-            </h1>
+            <h1>Lo de Luisa</h1>
 
-            <p>
-                Productos de limpieza
-            </p>
+            <p>Productos de limpieza</p>
 
         </div>
 
@@ -1001,24 +665,15 @@ footer strong {
 
 </header>
 
-
 <nav>
 
     <button onclick="mostrarSeccion('productos')">
         🧴 Productos
     </button>
 
-    <button
-        class="carrito-nav"
-        onclick="mostrarSeccion('carrito')"
-    >
+    <button class="carrito-nav" onclick="mostrarSeccion('carrito')">
         🛒 Carrito
-
-        <span
-            id="contadorCarrito"
-            class="contador-carrito"
-        >0</span>
-
+        <span id="contadorCarrito" class="contador-carrito">0</span>
     </button>
 
     <button onclick="mostrarSeccion('ubicacion')">
@@ -1035,27 +690,19 @@ footer strong {
 
 </nav>
 
-
 <div class="contenedor">
 
-
-<section
-    id="productos"
-    class="seccion activa"
->
+<section id="productos" class="seccion activa">
 
     <div class="titulo-seccion">
 
-        <h2>
-            Productos
-        </h2>
+        <h2>Productos</h2>
 
         <p>
             Todo lo que necesitás para la limpieza de tu hogar
         </p>
 
     </div>
-
 
     <input
         id="buscador"
@@ -1065,31 +712,18 @@ footer strong {
         oninput="mostrarProductos()"
     >
 
+    <div id="categorias" class="categorias"></div>
 
-    <div
-        id="categorias"
-        class="categorias"
-    ></div>
-
-
-    <div
-        id="listaProductos"
-        class="productos"
-    ></div>
+    <div id="listaProductos" class="productos"></div>
 
 </section>
 
 
-<section
-    id="carrito"
-    class="seccion"
->
+<section id="carrito" class="seccion">
 
     <div class="titulo-seccion">
 
-        <h2>
-            Tu carrito
-        </h2>
+        <h2>Tu carrito</h2>
 
         <p>
             Revisá tus productos antes de realizar el pedido
@@ -1097,17 +731,11 @@ footer strong {
 
     </div>
 
-
     <div id="listaCarrito"></div>
 
-
-    <div
-        id="totalCarrito"
-        class="total-carrito"
-    >
+    <div id="totalCarrito" class="total-carrito">
         Total: $0
     </div>
-
 
     <button
         class="boton boton-whatsapp boton-finalizar"
@@ -1119,42 +747,29 @@ footer strong {
 </section>
 
 
-<section
-    id="ubicacion"
-    class="seccion"
->
+<section id="ubicacion" class="seccion">
 
     <div class="titulo-seccion">
 
-        <h2>
-            Encontranos
-        </h2>
+        <h2>Encontranos</h2>
 
-        <p>
-            Estamos para ayudarte
-        </p>
+        <p>Estamos para ayudarte</p>
 
     </div>
 
-
     <div class="tarjeta-info">
 
-        <h3>
-            📍 Lo de Luisa
-        </h3>
+        <h3>📍 Lo de Luisa</h3>
 
         <div class="direccion">
 
             Berón de Astrada 2710<br>
-
             Remedios de Escalada<br>
-
             Lanús, Buenos Aires
 
         </div>
 
     </div>
-
 
     <iframe
         class="mapa"
@@ -1165,16 +780,11 @@ footer strong {
 </section>
 
 
-<section
-    id="pagos"
-    class="seccion"
->
+<section id="pagos" class="seccion">
 
     <div class="titulo-seccion">
 
-        <h2>
-            Medios de pago
-        </h2>
+        <h2>Medios de pago</h2>
 
         <p>
             Elegí la forma de pago que más te convenga
@@ -1182,19 +792,13 @@ footer strong {
 
     </div>
 
-
     <div class="pagos-grid">
-
 
         <div class="pago">
 
-            <div class="pago-icono">
-                💵
-            </div>
+            <div class="pago-icono">💵</div>
 
-            <h3>
-                Efectivo
-            </h3>
+            <h3>Efectivo</h3>
 
             <p>
                 Podés abonar tu compra en efectivo.
@@ -1202,16 +806,11 @@ footer strong {
 
         </div>
 
-
         <div class="pago">
 
-            <div class="pago-icono">
-                🏦
-            </div>
+            <div class="pago-icono">🏦</div>
 
-            <h3>
-                Transferencia
-            </h3>
+            <h3>Transferencia</h3>
 
             <p>
                 Consultanos los datos para realizar
@@ -1220,20 +819,13 @@ footer strong {
 
         </div>
 
-
         <div class="pago">
 
-            <div class="pago-icono">
-                💙
-            </div>
+            <div class="pago-icono">💙</div>
 
-            <h3>
-                Mercado Pago
-            </h3>
+            <h3>Mercado Pago</h3>
 
-            <p>
-                Alias:
-            </p>
+            <p>Alias:</p>
 
             <div class="alias">
                 Soledad90
@@ -1241,22 +833,16 @@ footer strong {
 
         </div>
 
-
     </div>
 
 </section>
 
 
-<section
-    id="admin"
-    class="seccion"
->
+<section id="admin" class="seccion">
 
     <div class="titulo-seccion">
 
-        <h2>
-            Administración
-        </h2>
+        <h2>Administración</h2>
 
         <p>
             Gestión de productos y stock
@@ -1265,10 +851,9 @@ footer strong {
     </div>
 
 
-    <div
-        id="loginAdmin"
-        class="admin-login"
-    >
+    <!-- LOGIN SUPABASE -->
+
+    <div id="loginAdmin" class="admin-login">
 
         <div class="formulario">
 
@@ -1276,17 +861,16 @@ footer strong {
                 🔐 Iniciar sesión
             </h3>
 
-
             <label>
-                Usuario
+                Email
             </label>
 
             <input
-                id="usuarioAdmin"
-                type="text"
-                placeholder="Usuario"
+                id="emailAdmin"
+                type="email"
+                placeholder="tu-email@ejemplo.com"
+                autocomplete="username"
             >
-
 
             <label>
                 Contraseña
@@ -1295,9 +879,9 @@ footer strong {
             <input
                 id="passwordAdmin"
                 type="password"
-                placeholder="Contraseña"
+                placeholder="Tu contraseña"
+                autocomplete="current-password"
             >
-
 
             <button
                 class="boton boton-principal"
@@ -1311,10 +895,15 @@ footer strong {
     </div>
 
 
-    <div
-        id="panelAdmin"
-        class="oculto"
-    >
+    <!-- PANEL ADMIN -->
+
+    <div id="panelAdmin" class="oculto">
+
+        <div class="usuario-conectado">
+            🔓 Sesión iniciada como:
+            <strong id="emailUsuario"></strong>
+        </div>
+
 
         <div class="formulario">
 
@@ -1322,10 +911,7 @@ footer strong {
                 ➕ Agregar producto
             </h3>
 
-
-            <label>
-                Nombre
-            </label>
+            <label>Nombre</label>
 
             <input
                 id="nombreProducto"
@@ -1333,10 +919,7 @@ footer strong {
                 placeholder="Ej: Detergente"
             >
 
-
-            <label>
-                Precio
-            </label>
+            <label>Precio</label>
 
             <input
                 id="precioProducto"
@@ -1344,10 +927,7 @@ footer strong {
                 placeholder="Ej: 2500"
             >
 
-
-            <label>
-                Stock
-            </label>
+            <label>Stock</label>
 
             <input
                 id="stockProducto"
@@ -1355,10 +935,7 @@ footer strong {
                 placeholder="Ej: 20"
             >
 
-
-            <label>
-                Imagen
-            </label>
+            <label>Imagen</label>
 
             <input
                 id="imagenProducto"
@@ -1366,10 +943,7 @@ footer strong {
                 placeholder="URL de la imagen"
             >
 
-
-            <label>
-                Categoría
-            </label>
+            <label>Categoría</label>
 
             <input
                 id="categoriaProducto"
@@ -1377,17 +951,13 @@ footer strong {
                 placeholder="Ej: Limpieza"
             >
 
-
-            <label>
-                Descripción
-            </label>
+            <label>Descripción</label>
 
             <textarea
                 id="descripcionProducto"
                 rows="4"
                 placeholder="Descripción del producto"
             ></textarea>
-
 
             <button
                 class="boton boton-principal"
@@ -1403,9 +973,7 @@ footer strong {
 
 
         <h3 style="color:#102A43;">
-
             📦 Productos existentes
-
         </h3>
 
 
@@ -1426,15 +994,12 @@ footer strong {
 
 </section>
 
-
 </div>
 
 
 <footer>
 
-    <strong>
-        Lo de Luisa
-    </strong>
+    <strong>Lo de Luisa</strong>
 
     <br>
 
@@ -1444,7 +1009,6 @@ footer strong {
 
 
 <script>
-
 
 /* =========================================================
    SUPABASE
@@ -1484,6 +1048,9 @@ let categoriaSeleccionada =
 let adminLogueado =
     false;
 
+let usuarioActual =
+    null;
+
 
 /* =========================================================
    INICIO
@@ -1491,15 +1058,107 @@ let adminLogueado =
 
 document.addEventListener(
     "DOMContentLoaded",
-    function () {
-
-        console.log(
-            "Cargando productos desde Supabase..."
-        );
+    async function () {
 
         cargarProductosDesdeSupabase();
 
         mostrarCarrito();
+
+        await verificarSesion();
+
+    }
+);
+
+
+/* =========================================================
+   VERIFICAR SESIÓN SUPABASE
+========================================================= */
+
+async function verificarSesion() {
+
+    const {
+        data,
+        error
+    } =
+        await clienteSupabase.auth.getSession();
+
+
+    if (error) {
+
+        console.error(
+            "Error verificando sesión:",
+            error
+        );
+
+        return;
+
+    }
+
+
+    const session =
+        data.session;
+
+
+    if (session) {
+
+        usuarioActual =
+            session.user;
+
+        adminLogueado =
+            true;
+
+        mostrarPanelAdmin();
+
+    }
+
+    else {
+
+        usuarioActual =
+            null;
+
+        adminLogueado =
+            false;
+
+        mostrarLoginAdmin();
+
+    }
+
+}
+
+
+/* =========================================================
+   ESCUCHAR CAMBIOS DE SESIÓN
+========================================================= */
+
+clienteSupabase.auth.onAuthStateChange(
+    function (
+        event,
+        session
+    ) {
+
+        if (session) {
+
+            usuarioActual =
+                session.user;
+
+            adminLogueado =
+                true;
+
+            mostrarPanelAdmin();
+
+        }
+
+        else {
+
+            usuarioActual =
+                null;
+
+            adminLogueado =
+                false;
+
+            mostrarLoginAdmin();
+
+        }
 
     }
 );
@@ -1543,14 +1202,17 @@ function mostrarSeccion(nombre) {
 
 
 /* =========================================================
-   SUPABASE
+   SUPABASE - CARGAR PRODUCTOS
 ========================================================= */
 
 async function cargarProductosDesdeSupabase() {
 
     try {
 
-        const { data, error } =
+        const {
+            data,
+            error
+        } =
             await clienteSupabase
 
                 .from("productos")
@@ -1575,12 +1237,6 @@ async function cargarProductosDesdeSupabase() {
             return;
 
         }
-
-
-        console.log(
-            "✅ Productos cargados desde Supabase:",
-            data
-        );
 
 
         productos =
@@ -2028,10 +1684,6 @@ function agregarAlCarrito(id) {
 }
 
 
-/* =========================================================
-   MOSTRAR CARRITO
-========================================================= */
-
 function mostrarCarrito() {
 
     const contenedor =
@@ -2080,9 +1732,7 @@ function mostrarCarrito() {
 
             <div class="carrito-vacio">
 
-                <div
-                    style="font-size:55px;"
-                >
+                <div style="font-size:55px;">
                     🛒
                 </div>
 
@@ -2149,9 +1799,7 @@ function mostrarCarrito() {
                 <div>
 
                     <div class="carrito-nombre">
-
                         ${item.nombre}
-
                     </div>
 
                     <div class="carrito-detalle">
@@ -2170,12 +1818,10 @@ function mostrarCarrito() {
                         Subtotal:
 
                         <strong>
-
                             $${subtotal
                                 .toLocaleString(
                                     "es-AR"
                                 )}
-
                         </strong>
 
                     </div>
@@ -2243,10 +1889,6 @@ function mostrarCarrito() {
 
 }
 
-
-/* =========================================================
-   CANTIDADES
-========================================================= */
 
 function aumentarCantidad(index) {
 
@@ -2425,70 +2067,150 @@ function enviarPedidoWhatsApp() {
 
 
 /* =========================================================
-   ADMIN
+   ADMIN - LOGIN SUPABASE
 ========================================================= */
 
-function iniciarSesionAdmin() {
+async function iniciarSesionAdmin() {
 
-    const usuario =
-        document.getElementById(
-            "usuarioAdmin"
-        ).value;
+    const email =
+        document
+            .getElementById(
+                "emailAdmin"
+            )
+            .value
+            .trim();
 
 
     const password =
-        document.getElementById(
-            "passwordAdmin"
-        ).value;
-
-
-    if (
-        usuario === "ADM" &&
-        password === "ADM"
-    ) {
-
-        adminLogueado =
-            true;
-
-
         document
             .getElementById(
-                "loginAdmin"
+                "passwordAdmin"
             )
-            .classList.add(
-                "oculto"
-            );
+            .value;
 
 
-        document
-            .getElementById(
-                "panelAdmin"
-            )
-            .classList.remove(
-                "oculto"
-            );
-
-
-        mostrarAdmin();
-
-    }
-
-    else {
+    if (!email || !password) {
 
         alert(
-            "Usuario o contraseña incorrectos."
+            "Completá el email y la contraseña."
         );
 
+        return;
+
     }
+
+
+    const boton =
+        document.querySelector(
+            "#loginAdmin .boton"
+        );
+
+
+    boton.disabled = true;
+
+    boton.textContent =
+        "Ingresando...";
+
+
+    const {
+        data,
+        error
+    } =
+        await clienteSupabase.auth.signInWithPassword({
+
+            email:
+                email,
+
+            password:
+                password
+
+        });
+
+
+    boton.disabled = false;
+
+    boton.textContent =
+        "Ingresar";
+
+
+    if (error) {
+
+        console.error(
+            "Error iniciando sesión:",
+            error
+        );
+
+
+        alert(
+            "No se pudo iniciar sesión.\n\n" +
+            error.message
+        );
+
+        return;
+
+    }
+
+
+    usuarioActual =
+        data.user;
+
+    adminLogueado =
+        true;
+
+
+    mostrarPanelAdmin();
+
+    await cargarProductosDesdeSupabase();
 
 }
 
 
-function cerrarSesionAdmin() {
+/* =========================================================
+   ADMIN - MOSTRAR PANEL
+========================================================= */
 
-    adminLogueado =
-        false;
+function mostrarPanelAdmin() {
 
+    document
+        .getElementById(
+            "loginAdmin"
+        )
+        .classList.add(
+            "oculto"
+        );
+
+
+    document
+        .getElementById(
+            "panelAdmin"
+        )
+        .classList.remove(
+            "oculto"
+        );
+
+
+    if (usuarioActual) {
+
+        document
+            .getElementById(
+                "emailUsuario"
+            )
+            .textContent =
+            usuarioActual.email;
+
+    }
+
+
+    mostrarAdmin();
+
+}
+
+
+/* =========================================================
+   ADMIN - MOSTRAR LOGIN
+========================================================= */
+
+function mostrarLoginAdmin() {
 
     document
         .getElementById(
@@ -2511,7 +2233,63 @@ function cerrarSesionAdmin() {
 
 
 /* =========================================================
-   ADMIN - MOSTRAR
+   ADMIN - CERRAR SESIÓN
+========================================================= */
+
+async function cerrarSesionAdmin() {
+
+    const {
+        error
+    } =
+        await clienteSupabase.auth.signOut();
+
+
+    if (error) {
+
+        console.error(
+            "Error cerrando sesión:",
+            error
+        );
+
+
+        alert(
+            "No se pudo cerrar la sesión.\n\n" +
+            error.message
+        );
+
+        return;
+
+    }
+
+
+    adminLogueado =
+        false;
+
+    usuarioActual =
+        null;
+
+
+    document
+        .getElementById(
+            "emailAdmin"
+        )
+        .value = "";
+
+
+    document
+        .getElementById(
+            "passwordAdmin"
+        )
+        .value = "";
+
+
+    mostrarLoginAdmin();
+
+}
+
+
+/* =========================================================
+   ADMIN - MOSTRAR PRODUCTOS
 ========================================================= */
 
 function mostrarAdmin() {
@@ -2526,6 +2304,10 @@ function mostrarAdmin() {
         document.getElementById(
             "listaAdmin"
         );
+
+
+    if (!contenedor)
+        return;
 
 
     contenedor.innerHTML = "";
@@ -2692,7 +2474,7 @@ async function agregarProducto() {
 
     if (
         !nombre ||
-        !precio ||
+        precio <= 0 ||
         stock < 0
     ) {
 
@@ -2705,7 +2487,10 @@ async function agregarProducto() {
     }
 
 
-    const { data, error } =
+    const {
+        data,
+        error
+    } =
         await clienteSupabase
 
             .from("productos")
@@ -2816,6 +2601,17 @@ async function agregarProducto() {
 
 async function editarProducto(id) {
 
+    if (!adminLogueado) {
+
+        alert(
+            "Tenés que iniciar sesión."
+        );
+
+        return;
+
+    }
+
+
     const producto =
         productos.find(
             function(p) {
@@ -2869,7 +2665,24 @@ async function editarProducto(id) {
         return;
 
 
-    const { error } =
+    if (
+        !nuevoNombre.trim() ||
+        Number(nuevoPrecio) <= 0 ||
+        Number(nuevoStock) < 0
+    ) {
+
+        alert(
+            "Los datos ingresados no son válidos."
+        );
+
+        return;
+
+    }
+
+
+    const {
+        error
+    } =
         await clienteSupabase
 
             .from("productos")
@@ -2877,7 +2690,7 @@ async function editarProducto(id) {
             .update({
 
                 Nombre:
-                    nuevoNombre,
+                    nuevoNombre.trim(),
 
                 Precio:
                     Number(
@@ -2932,6 +2745,17 @@ async function editarProducto(id) {
 
 async function eliminarProducto(id) {
 
+    if (!adminLogueado) {
+
+        alert(
+            "Tenés que iniciar sesión."
+        );
+
+        return;
+
+    }
+
+
     const producto =
         productos.find(
             function(p) {
@@ -2958,7 +2782,9 @@ async function eliminarProducto(id) {
         return;
 
 
-    const { error } =
+    const {
+        error
+    } =
         await clienteSupabase
 
             .from("productos")
