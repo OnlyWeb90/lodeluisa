@@ -46,35 +46,31 @@ body {
 }
 
 header {
-    background: var(--azul);
-    color: white;
-    padding: 28px 20px 22px;
+    background: var(--crema);
+
+    padding: 25px;
+
     text-align: center;
+
+    border-bottom: 3px solid var(--azul);
 }
 
 .logo {
-    display: inline-flex;
-    align-items: center;
+    display: flex;
+
     justify-content: center;
-    gap: 12px;
+
+    align-items: center;
 }
 
-.logo-icon {
-    font-size: 42px;
-}
+.logo-img {
+    width: 320px;
 
-.logo h1 {
-    margin: 0;
-    font-size: 42px;
-    font-weight: 800;
-    letter-spacing: 1px;
-}
+    max-width: 90%;
 
-header p {
-    margin: 4px 0 0;
-    color: #E8DED0;
-    font-size: 18px;
-    font-weight: 500;
+    height: auto;
+
+    display: block;
 }
 
 nav {
@@ -651,15 +647,11 @@ footer strong {
 
     <div class="logo">
 
-        <div class="logo-icon">🧼</div>
-
-        <div>
-
-            <h1>Lo de Luisa</h1>
-
-            <p>Productos de limpieza</p>
-
-        </div>
+        <img
+            src="logo.png"
+            alt="Lo de Luisa"
+            class="logo-img"
+        >
 
     </div>
 
