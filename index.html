@@ -1,13 +1,9 @@
 ```html
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
-
     <meta charset="UTF-8">
-
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Lo de Luisa</title>
 
@@ -15,107 +11,95 @@
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
     <style>
-
         * {
             box-sizing: border-box;
         }
 
         body {
             margin: 0;
-            font-family: Arial, sans-serif;
-            background: #f7f7f7;
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f5f5f5;
             color: #333;
         }
 
         header {
-            background: white;
+            background: #ffffff;
             padding: 20px;
             text-align: center;
-            box-shadow: 0 2px 8px rgba(0,0,0,.1);
+            border-bottom: 1px solid #ddd;
         }
 
         header h1 {
             margin: 0;
-            color: #2d6a4f;
+            font-size: 32px;
+            color: #333;
         }
 
         nav {
+            background: #333;
             display: flex;
             justify-content: center;
             flex-wrap: wrap;
-            gap: 10px;
-            padding: 15px;
-            background: #2d6a4f;
         }
 
         nav button {
+            background: none;
             border: none;
-            background: white;
-            color: #2d6a4f;
-            padding: 10px 16px;
-            border-radius: 8px;
+            color: white;
+            padding: 15px 20px;
             cursor: pointer;
-            font-weight: bold;
+            font-size: 15px;
         }
 
         nav button:hover {
-            background: #d8f3dc;
+            background: #555;
         }
 
-        main {
+        .seccion {
+            display: none;
             max-width: 1200px;
             margin: auto;
-            padding: 20px;
+            padding: 30px 20px;
         }
 
-        section {
-            display: none;
-        }
-
-        section.activa {
+        .seccion.activa {
             display: block;
         }
 
         h2 {
-            color: #2d6a4f;
+            text-align: center;
+            margin-bottom: 25px;
         }
 
-        .controles {
+        /* PRODUCTOS */
+
+        .controles-productos {
             display: flex;
-            flex-wrap: wrap;
             gap: 10px;
-            margin-bottom: 20px;
+            flex-wrap: wrap;
+            margin-bottom: 25px;
         }
 
-        input,
-        select,
-        textarea {
-            padding: 10px;
+        .controles-productos input,
+        .controles-productos select {
+            padding: 12px;
             border: 1px solid #ccc;
-            border-radius: 8px;
-            font-size: 15px;
+            border-radius: 6px;
+            flex: 1;
+            min-width: 200px;
         }
 
-        textarea {
-            width: 100%;
-            min-height: 80px;
-            resize: vertical;
-        }
-
-        .productos {
+        .productos-grid {
             display: grid;
-            grid-template-columns: repeat(
-                auto-fill,
-                minmax(230px, 1fr)
-            );
+            grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
             gap: 20px;
         }
 
         .producto {
             background: white;
-            border-radius: 12px;
+            border-radius: 10px;
             overflow: hidden;
-            box-shadow: 0 3px 10px rgba(0,0,0,.1);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.10);
             padding-bottom: 15px;
         }
 
@@ -123,7 +107,17 @@
             width: 100%;
             height: 180px;
             object-fit: cover;
-            background: #eee;
+            display: block;
+        }
+
+        .imagen-sin-foto {
+            width: 100%;
+            height: 180px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #eeeeee;
+            font-size: 50px;
         }
 
         .producto-contenido {
@@ -131,187 +125,238 @@
         }
 
         .producto h3 {
-            margin-top: 0;
-            color: #2d6a4f;
+            margin: 0 0 8px 0;
+        }
+
+        .categoria {
+            font-size: 13px;
+            color: #777;
+            margin-bottom: 8px;
+        }
+
+        .descripcion {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 10px;
         }
 
         .precio {
-            font-size: 20px;
+            font-size: 21px;
             font-weight: bold;
-            margin: 10px 0;
+            margin-bottom: 5px;
         }
 
         .stock {
-            margin-bottom: 10px;
+            font-size: 14px;
+            margin-bottom: 12px;
         }
 
-        .agotado {
-            color: #c1121f;
-            font-weight: bold;
-        }
-
-        button {
+        .boton {
             border: none;
             padding: 10px 14px;
-            border-radius: 8px;
+            border-radius: 6px;
             cursor: pointer;
+            font-size: 14px;
         }
 
-        .btn-principal {
-            background: #2d6a4f;
+        .boton-principal {
+            background: #333;
             color: white;
         }
 
-        .btn-principal:hover {
-            background: #1b4332;
+        .boton-principal:hover {
+            background: #555;
         }
 
-        .btn-danger {
-            background: #c1121f;
+        .boton-eliminar {
+            background: #d9534f;
             color: white;
         }
 
-        .btn-editar {
-            background: #f4a261;
+        .boton-editar {
+            background: #f0ad4e;
             color: white;
         }
+
+        .boton-whatsapp {
+            background: #25D366;
+            color: white;
+        }
+
+        .boton:disabled {
+            background: #aaa;
+            cursor: not-allowed;
+        }
+
+        /* CARRITO */
 
         .carrito-item {
             background: white;
-            padding: 15px;
             margin-bottom: 10px;
-            border-radius: 10px;
+            padding: 15px;
+            border-radius: 8px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            gap: 10px;
+            gap: 15px;
             flex-wrap: wrap;
         }
 
-        .total {
-            font-size: 24px;
-            font-weight: bold;
+        .carrito-total {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
             margin-top: 20px;
+            text-align: right;
+            font-size: 22px;
+            font-weight: bold;
         }
 
-        .admin-box {
-            background: white;
-            padding: 20px;
-            border-radius: 12px;
-            margin-bottom: 20px;
-            box-shadow: 0 3px 10px rgba(0,0,0,.08);
-        }
-
-        .admin-form {
-            display: grid;
-            gap: 10px;
-        }
-
-        .admin-producto {
-            background: #f8f9fa;
-            padding: 15px;
-            margin-top: 10px;
-            border-radius: 10px;
-        }
-
-        .acciones {
-            display: flex;
-            gap: 8px;
-            margin-top: 10px;
-            flex-wrap: wrap;
-        }
-
-        .metodo-pago {
-            background: white;
-            padding: 20px;
-            margin-bottom: 15px;
-            border-radius: 12px;
-            box-shadow: 0 3px 10px rgba(0,0,0,.08);
-        }
+        /* UBICACION */
 
         .mapa {
             width: 100%;
-            height: 400px;
+            height: 450px;
             border: 0;
-            border-radius: 12px;
+            border-radius: 10px;
         }
 
-        .cargando {
+        /* PAGOS */
+
+        .pagos {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+        }
+
+        .pago {
+            background: white;
+            padding: 25px;
             text-align: center;
-            padding: 30px;
-            font-size: 18px;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+
+        .pago .icono {
+            font-size: 45px;
+            margin-bottom: 10px;
+        }
+
+        /* ADMIN */
+
+        .admin-login,
+        .admin-panel {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            max-width: 700px;
+            margin: auto;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+
+        .admin-login input,
+        .admin-panel input,
+        .admin-panel textarea,
+        .admin-panel select {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 12px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+        }
+
+        .admin-panel textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+
+        .admin-producto {
+            border: 1px solid #ddd;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 10px;
+        }
+
+        .admin-producto strong {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .admin-botones {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-top: 10px;
+        }
+
+        .mensaje {
+            margin-top: 10px;
+            padding: 10px;
+            border-radius: 6px;
+            display: none;
+        }
+
+        .mensaje.error {
+            background: #f8d7da;
+            color: #721c24;
+            display: block;
+        }
+
+        .mensaje.ok {
+            background: #d4edda;
+            color: #155724;
+            display: block;
+        }
+
+        footer {
+            text-align: center;
+            padding: 25px;
+            background: #333;
+            color: white;
+            margin-top: 30px;
         }
 
         @media (max-width: 600px) {
 
-            nav {
-                flex-direction: column;
+            header h1 {
+                font-size: 25px;
             }
 
             nav button {
-                width: 100%;
+                width: 50%;
             }
 
-            .carrito-item {
-                flex-direction: column;
-                align-items: flex-start;
+            .mapa {
+                height: 350px;
             }
-
         }
-
     </style>
-
 </head>
-
 
 <body>
 
-
 <header>
-
     <h1>🧼 Lo de Luisa 🧼</h1>
-
 </header>
 
-
 <nav>
-
-    <button onclick="mostrarSeccion('productos')">
-        🛒 Productos
-    </button>
-
-    <button onclick="mostrarSeccion('carrito')">
-        🛍️ Carrito
-        <span id="contadorCarrito">0</span>
-    </button>
-
-    <button onclick="mostrarSeccion('ubicacion')">
-        📍 Ubicación
-    </button>
-
-    <button onclick="mostrarSeccion('pagos')">
-        💳 Medios de pago
-    </button>
-
-    <button onclick="mostrarSeccion('administracion')">
-        ⚙️ Administración
-    </button>
-
+    <button onclick="mostrarSeccion('productos')">🛒 Productos</button>
+    <button onclick="mostrarSeccion('carrito')">🛍️ Carrito</button>
+    <button onclick="mostrarSeccion('ubicacion')">📍 Ubicación</button>
+    <button onclick="mostrarSeccion('pagos')">💳 Medios de pago</button>
+    <button onclick="mostrarSeccion('admin')">⚙️ Administración</button>
 </nav>
 
 
-<main>
+<!-- ========================= -->
+<!-- PRODUCTOS -->
+<!-- ========================= -->
 
-
-<!-- =====================================================
-     PRODUCTOS
-===================================================== -->
-
-<section id="productos" class="activa">
+<section id="productos" class="seccion activa">
 
     <h2>Productos</h2>
 
-    <div class="controles">
+    <div class="controles-productos">
 
         <input
             type="text"
@@ -320,292 +365,202 @@
             oninput="mostrarProductos()"
         >
 
-        <select
-            id="filtroCategoria"
-            onchange="mostrarProductos()"
-        >
-
-            <option value="">
-                Todas las categorías
-            </option>
-
+        <select id="filtroCategoria" onchange="mostrarProductos()">
+            <option value="">Todas las categorías</option>
         </select>
 
     </div>
 
-
-    <div
-        id="productosContainer"
-        class="productos"
-    >
-
-        <div class="cargando">
-            ⏳ Cargando productos...
-        </div>
-
+    <div id="productosGrid" class="productos-grid">
+        <p>Cargando productos...</p>
     </div>
 
 </section>
 
 
+<!-- ========================= -->
+<!-- CARRITO -->
+<!-- ========================= -->
 
-<!-- =====================================================
-     CARRITO
-===================================================== -->
+<section id="carrito" class="seccion">
 
-<section id="carrito">
+    <h2>🛍️ Mi carrito</h2>
 
-    <h2>🛍️ Carrito</h2>
+    <div id="carritoContenido"></div>
 
-    <div id="carritoContainer"></div>
-
-    <div class="total">
-
-        Total:
-        $<span id="totalCarrito">0</span>
-
+    <div class="carrito-total">
+        Total: $<span id="totalCarrito">0</span>
     </div>
 
     <br>
 
     <button
-        class="btn-principal"
-        onclick="enviarWhatsApp()"
+        class="boton boton-whatsapp"
+        onclick="enviarPedidoWhatsApp()"
     >
-
-        📱 Pedir por WhatsApp
-
+        📲 Realizar pedido por WhatsApp
     </button>
 
 </section>
 
 
+<!-- ========================= -->
+<!-- UBICACION -->
+<!-- ========================= -->
 
-<!-- =====================================================
-     UBICACIÓN
-===================================================== -->
+<section id="ubicacion" class="seccion">
 
-<section id="ubicacion">
+    <h2>📍 Dónde estamos</h2>
 
-    <h2>📍 Ubicación</h2>
-
-    <p>
-        Encontranos en:
+    <p style="text-align:center;">
+        Berón de Astrada 2710, Remedios de Escalada, Lanús
     </p>
-
-    <p>
-
-        <strong>
-            Berón de Astrada 2710,
-            Remedios de Escalada,
-            Lanús, Buenos Aires
-        </strong>
-
-    </p>
-
 
     <iframe
-
         class="mapa"
-
         src="https://www.google.com/maps?q=Berón+de+Astrada+2710,+Remedios+de+Escalada,+Lanús,+Buenos+Aires&output=embed"
-
         loading="lazy">
-
     </iframe>
 
 </section>
 
 
+<!-- ========================= -->
+<!-- MEDIOS DE PAGO -->
+<!-- ========================= -->
 
-<!-- =====================================================
-     MEDIOS DE PAGO
-===================================================== -->
-
-<section id="pagos">
+<section id="pagos" class="seccion">
 
     <h2>💳 Medios de pago</h2>
 
+    <div class="pagos">
 
-    <div class="metodo-pago">
+        <div class="pago">
+            <div class="icono">💵</div>
+            <h3>Efectivo</h3>
+            <p>Podés abonar tu compra en efectivo.</p>
+        </div>
 
-        <h3>💵 Efectivo</h3>
+        <div class="pago">
+            <div class="icono">💳</div>
+            <h3>Transferencia</h3>
+            <p>Consultanos los datos para realizar la transferencia.</p>
+        </div>
 
-        <p>
-            Podés abonar en efectivo.
-        </p>
-
-    </div>
-
-
-    <div class="metodo-pago">
-
-        <h3>🏦 Transferencia</h3>
-
-        <p>
-            Consultanos los datos para realizar
-            la transferencia.
-        </p>
-
-    </div>
-
-
-    <div class="metodo-pago">
-
-        <h3>📱 Mercado Pago</h3>
-
-        <p>
-
-            Alias:
-            <strong>Soledad90</strong>
-
-        </p>
+        <div class="pago">
+            <div class="icono">🔵</div>
+            <h3>Mercado Pago</h3>
+            <p>Alias: <strong>Soledad90</strong></p>
+        </div>
 
     </div>
 
 </section>
 
 
+<!-- ========================= -->
+<!-- ADMINISTRACION -->
+<!-- ========================= -->
 
-<!-- =====================================================
-     ADMINISTRACIÓN
-===================================================== -->
-
-<section id="administracion">
+<section id="admin" class="seccion">
 
     <h2>⚙️ Administración</h2>
 
+    <!-- LOGIN -->
 
-    <div
-        id="loginAdmin"
-        class="admin-box"
-    >
+    <div id="adminLogin" class="admin-login">
 
-        <h3>
-            🔐 Ingreso de administrador
-        </h3>
+        <h3>Ingresar al panel</h3>
 
+        <input
+            type="text"
+            id="usuarioAdmin"
+            placeholder="Usuario"
+        >
 
-        <div class="admin-form">
+        <input
+            type="password"
+            id="passwordAdmin"
+            placeholder="Contraseña"
+        >
 
-            <input
-                type="text"
-                id="usuarioAdmin"
-                placeholder="Usuario"
-            >
+        <button
+            class="boton boton-principal"
+            onclick="iniciarSesionAdmin()"
+        >
+            Ingresar
+        </button>
 
-
-            <input
-                type="password"
-                id="passwordAdmin"
-                placeholder="Contraseña"
-            >
-
-
-            <button
-                class="btn-principal"
-                onclick="loginAdmin()"
-            >
-
-                Ingresar
-
-            </button>
-
-        </div>
+        <div id="mensajeLogin" class="mensaje"></div>
 
     </div>
 
 
+    <!-- PANEL ADMIN -->
 
     <div
-        id="panelAdmin"
-        class="admin-box"
+        id="adminPanel"
+        class="admin-panel"
         style="display:none;"
     >
 
-        <h3>
-            📦 Cargar producto
-        </h3>
+        <h3>Agregar producto</h3>
 
+        <input
+            type="text"
+            id="nuevoNombre"
+            placeholder="Nombre del producto"
+        >
 
-        <div class="admin-form">
+        <input
+            type="number"
+            id="nuevoPrecio"
+            placeholder="Precio"
+        >
 
-            <input
-                type="text"
-                id="nombreProducto"
-                placeholder="Nombre del producto"
-            >
+        <input
+            type="number"
+            id="nuevoStock"
+            placeholder="Stock disponible"
+        >
 
+        <input
+            type="text"
+            id="nuevaImagen"
+            placeholder="URL de imagen (opcional)"
+        >
 
-            <input
-                type="number"
-                id="precioProducto"
-                placeholder="Precio"
-                min="0"
-            >
+        <input
+            type="text"
+            id="nuevaCategoria"
+            placeholder="Categoría"
+        >
 
+        <textarea
+            id="nuevaDescripcion"
+            placeholder="Descripción"
+        ></textarea>
 
-            <input
-                type="number"
-                id="stockProducto"
-                placeholder="Stock disponible"
-                min="0"
-            >
+        <button
+            class="boton boton-principal"
+            onclick="agregarProducto()"
+        >
+            ➕ Agregar producto
+        </button>
 
+        <hr style="margin:30px 0;">
 
-            <input
-                type="text"
-                id="categoriaProducto"
-                placeholder="Categoría"
-            >
+        <h3>Productos cargados</h3>
 
-
-            <input
-                type="text"
-                id="imagenProducto"
-                placeholder="URL de imagen"
-            >
-
-
-            <textarea
-                id="descripcionProducto"
-                placeholder="Descripción del producto"
-            ></textarea>
-
-
-            <button
-                class="btn-principal"
-                onclick="agregarProducto()"
-            >
-
-                ➕ Agregar producto
-
-            </button>
-
-        </div>
-
-
-        <hr>
-
-
-        <h3>
-            📋 Productos cargados
-        </h3>
-
-
-        <div id="adminProductos"></div>
-
+        <div id="listaAdmin"></div>
 
         <br>
 
-
         <button
-            class="btn-danger"
+            class="boton boton-eliminar"
             onclick="cerrarSesionAdmin()"
         >
-
             Cerrar sesión
-
         </button>
 
     </div>
@@ -613,21 +568,20 @@
 </section>
 
 
-</main>
-
+<footer>
+    Lo de Luisa 🧼<br>
+    Productos de limpieza
+</footer>
 
 
 <script>
 
-
 /* =====================================================
-   CONEXIÓN SUPABASE
+   CONFIGURACIÓN SUPABASE
 ===================================================== */
-
 
 const SUPABASE_URL =
     "https://ibquqvdigojpoqedrpsv.supabase.co";
-
 
 const SUPABASE_PUBLISHABLE_KEY =
     "sb_publishable_njPz3hR-SUlc4riTLiQHVA_biW2Xuov";
@@ -635,76 +589,81 @@ const SUPABASE_PUBLISHABLE_KEY =
 
 const clienteSupabase =
     window.supabase.createClient(
-
         SUPABASE_URL,
-
         SUPABASE_PUBLISHABLE_KEY
-
     );
-
 
 
 /* =====================================================
    VARIABLES
 ===================================================== */
 
-
 let productos = [];
 
-let carrito =
-    JSON.parse(
-        localStorage.getItem("carrito")
-    ) || [];
+let carrito = JSON.parse(
+    localStorage.getItem("carritoLoDeLuisa")
+) || [];
 
-let usuarioLogueado = false;
+let adminLogueado = false;
 
+
+/* =====================================================
+   CAMBIAR SECCION
+===================================================== */
+
+function mostrarSeccion(id) {
+
+    document.querySelectorAll(".seccion")
+        .forEach(seccion => {
+            seccion.classList.remove("activa");
+        });
+
+    document.getElementById(id)
+        .classList.add("activa");
+
+    if (id === "carrito") {
+        mostrarCarrito();
+    }
+
+    if (id === "admin" && adminLogueado) {
+        mostrarAdmin();
+    }
+}
 
 
 /* =====================================================
    CARGAR PRODUCTOS DESDE SUPABASE
 ===================================================== */
 
-
 async function cargarProductosDesdeSupabase() {
 
+    console.log("Cargando productos desde Supabase...");
 
-    const {
-        data,
-        error
-    } = await clienteSupabase
-
-        .from("Productos")
-
-        .select("*")
-
-        .order("id", {
-            ascending: true
-        });
+    const { data, error } =
+        await clienteSupabase
+            .from("Productos")
+            .select("*")
+            .order("id", {
+                ascending: true
+            });
 
 
     if (error) {
 
         console.error(
-            "❌ Error al cargar productos:",
+            "Error cargando productos:",
             error
         );
 
-
         document.getElementById(
-            "productosContainer"
+            "productosGrid"
         ).innerHTML = `
-
             <p style="color:red;">
-
-                ❌ No se pudieron cargar
-                los productos.
-
+                ❌ No se pudieron cargar los productos.
             </p>
-
         `;
 
         return;
-
     }
 
 
@@ -714,53 +673,23 @@ async function cargarProductosDesdeSupabase() {
     );
 
 
-    /*
-       ACÁ ADAPTAMOS LOS NOMBRES DE
-       LAS COLUMNAS DE SUPABASE.
+    productos = data.map(producto => ({
 
-       Tu tabla tiene:
-       Nombre
-       Precio
-       stock
-       imagen
-    */
+        id: producto.id,
 
+        nombre: producto.Nombre,
 
-    productos =
-        data.map(
-            function(producto) {
+        precio: Number(producto.Precio) || 0,
 
-                return {
+        stock: Number(producto.stock) || 0,
 
-                    id:
-                        producto.id,
+        imagen: producto.imagen || "",
 
-                    nombre:
-                        producto.Nombre,
+        categoria: producto.categoria || "",
 
-                    precio:
-                        Number(
-                            producto.Precio
-                        ),
+        descripcion: producto.descripcion || ""
 
-                    stock:
-                        Number(
-                            producto.stock
-                        ),
-
-                    imagen:
-                        producto.imagen,
-
-                    categoria:
-                        producto.categoria || "",
-
-                    descripcion:
-                        producto.descripcion || ""
-
-                };
-
-            }
-        );
+    }));
 
 
     mostrarCategorias();
@@ -768,71 +697,14 @@ async function cargarProductosDesdeSupabase() {
     mostrarProductos();
 
     mostrarAdmin();
-
 }
 
 
-
 /* =====================================================
-   NAVEGACIÓN
+   CATEGORIAS
 ===================================================== */
-
-
-function mostrarSeccion(nombre) {
-
-
-    const secciones =
-        document.querySelectorAll(
-            "main section"
-        );
-
-
-    secciones.forEach(
-        function(seccion) {
-
-            seccion.classList.remove(
-                "activa"
-            );
-
-        }
-    );
-
-
-    const seccion =
-        document.getElementById(
-            nombre
-        );
-
-
-    if (seccion) {
-
-        seccion.classList.add(
-            "activa"
-        );
-
-    }
-
-
-    if (
-        nombre ===
-        "administracion"
-    ) {
-
-        mostrarAdmin();
-
-    }
-
-}
-
-
-
-/* =====================================================
-   CATEGORÍAS
-===================================================== */
-
 
 function mostrarCategorias() {
-
 
     const select =
         document.getElementById(
@@ -841,346 +713,240 @@ function mostrarCategorias() {
 
 
     const categorias =
-        [
-            ...new Set(
-
-                productos
-
-                    .map(
-                        producto =>
-                            producto.categoria
-                    )
-
-                    .filter(Boolean)
-
-            )
-        ];
+        [...new Set(
+            productos
+                .map(p => p.categoria)
+                .filter(c => c)
+        )];
 
 
     select.innerHTML =
-        `
-            <option value="">
-                Todas las categorías
+        `<option value="">
+            Todas las categorías
+        </option>`;
+
+
+    categorias.forEach(categoria => {
+
+        select.innerHTML += `
+            <option value="${categoria}">
+                ${categoria}
             </option>
         `;
 
-
-    categorias.forEach(
-        function(categoria) {
-
-
-            const option =
-                document.createElement(
-                    "option"
-                );
-
-
-            option.value =
-                categoria;
-
-
-            option.textContent =
-                categoria;
-
-
-            select.appendChild(
-                option
-            );
-
-        }
-    );
+    });
 
 }
-
 
 
 /* =====================================================
    MOSTRAR PRODUCTOS
 ===================================================== */
 
-
 function mostrarProductos() {
 
-
-    const container =
+    const grid =
         document.getElementById(
-            "productosContainer"
+            "productosGrid"
         );
 
 
     const buscador =
-        document
-            .getElementById(
-                "buscador"
-            )
-            .value
-            .toLowerCase();
+        document.getElementById(
+            "buscador"
+        ).value.toLowerCase();
 
 
     const categoria =
-        document
-            .getElementById(
-                "filtroCategoria"
-            )
-            .value;
+        document.getElementById(
+            "filtroCategoria"
+        ).value;
 
 
     const filtrados =
-        productos.filter(
-            function(producto) {
+        productos.filter(producto => {
+
+            const coincideNombre =
+                producto.nombre
+                    .toLowerCase()
+                    .includes(buscador);
 
 
-                const nombre =
-                    String(
-                        producto.nombre ||
-                        ""
-                    ).toLowerCase();
+            const coincideCategoria =
+                !categoria ||
+                producto.categoria === categoria;
 
 
-                const coincideNombre =
-                    nombre.includes(
-                        buscador
-                    );
+            return coincideNombre &&
+                   coincideCategoria;
+
+        });
 
 
-                const coincideCategoria =
-                    !categoria ||
-                    producto.categoria ===
-                    categoria;
+    if (filtrados.length === 0) {
 
-
-                return (
-                    coincideNombre &&
-                    coincideCategoria
-                );
-
-            }
-        );
-
-
-    container.innerHTML = "";
-
-
-    if (
-        filtrados.length === 0
-    ) {
-
-        container.innerHTML =
-            "<p>No se encontraron productos.</p>";
+        grid.innerHTML = `
+            <p>
+                No se encontraron productos.
+            </p>
+        `;
 
         return;
-
     }
 
 
-    filtrados.forEach(
-        function(producto) {
+    grid.innerHTML = "";
 
 
-            const div =
-                document.createElement(
-                    "div"
-                );
+    filtrados.forEach(producto => {
+
+        const imagen =
+            producto.imagen || "";
 
 
-            div.className =
-                "producto";
-
-
-            const imagen =
-                producto.imagen ||
-                "https://via.placeholder.com/300x200?text=Producto";
-
-
-            const agotado =
-                producto.stock <= 0;
-
-
-            div.innerHTML = `
-
+        const imagenHTML =
+            imagen
+            ? `
                 <img
                     src="${imagen}"
                     alt="${producto.nombre}"
                 >
+              `
+            : `
+                <div class="imagen-sin-foto">
+                    📦
+                </div>
+              `;
 
+
+        const sinStock =
+            producto.stock <= 0;
+
+
+        grid.innerHTML += `
+
+            <div class="producto">
+
+                ${imagenHTML}
 
                 <div class="producto-contenido">
-
 
                     <h3>
                         ${producto.nombre}
                     </h3>
 
 
-                    <p>
-                        ${producto.descripcion}
-                    </p>
+                    ${
+                        producto.categoria
+                        ? `
+                            <div class="categoria">
+                                ${producto.categoria}
+                            </div>
+                          `
+                        : ""
+                    }
+
+
+                    ${
+                        producto.descripcion
+                        ? `
+                            <div class="descripcion">
+                                ${producto.descripcion}
+                            </div>
+                          `
+                        : ""
+                    }
 
 
                     <div class="precio">
-
-                        $${Number(
-                            producto.precio
-                        ).toLocaleString(
-                            "es-AR"
-                        )}
-
+                        $${formatearNumero(producto.precio)}
                     </div>
 
 
                     <div class="stock">
 
                         ${
-                            agotado
-
-                            ?
-
-                            '<span class="agotado">❌ Sin stock</span>'
-
-                            :
-
-                            `Stock disponible:
-                             ${producto.stock}`
-
+                            sinStock
+                            ? "❌ Sin stock"
+                            : `📦 Stock disponible: ${producto.stock}`
                         }
 
                     </div>
 
 
-                    ${
-                        agotado
-
-                        ?
-
-                        ""
-
-                        :
-
-                        `
-
-                            <button
-                                class="btn-principal"
-                                onclick="agregarAlCarrito(${producto.id})"
-                            >
-
-                                🛒 Agregar
-
-                            </button>
-
-                        `
-                    }
-
+                    <button
+                        class="boton boton-principal"
+                        onclick="agregarAlCarrito(${producto.id})"
+                        ${sinStock ? "disabled" : ""}
+                    >
+                        🛒 Agregar al carrito
+                    </button>
 
                 </div>
 
-            `;
+            </div>
 
+        `;
 
-            container.appendChild(
-                div
-            );
-
-        }
-    );
+    });
 
 }
-
 
 
 /* =====================================================
-   CARRITO
+   AGREGAR AL CARRITO
 ===================================================== */
-
-
-function guardarCarrito() {
-
-    localStorage.setItem(
-
-        "carrito",
-
-        JSON.stringify(
-            carrito
-        )
-
-    );
-
-}
-
-
 
 function agregarAlCarrito(id) {
 
-
     const producto =
         productos.find(
-            p =>
-                p.id == id
+            p => p.id === id
         );
 
 
-    if (!producto) {
+    if (!producto) return;
+
+
+    if (producto.stock <= 0) {
+
+        alert("Este producto no tiene stock.");
 
         return;
-
-    }
-
-
-    if (
-        producto.stock <= 0
-    ) {
-
-        alert(
-            "❌ No hay stock disponible."
-        );
-
-        return;
-
     }
 
 
     const existente =
         carrito.find(
-            item =>
-                item.id == id
+            item => item.id === id
         );
 
 
     if (existente) {
 
-
-        if (
-            existente.cantidad >=
-            producto.stock
-        ) {
+        if (existente.cantidad >= producto.stock) {
 
             alert(
-                "❌ No podés agregar más unidades que el stock disponible."
+                "No podés agregar más unidades que el stock disponible."
             );
 
             return;
-
         }
 
 
         existente.cantidad++;
 
-
     } else {
-
 
         carrito.push({
 
-            id:
-                producto.id,
+            id: producto.id,
 
-            nombre:
-                producto.nombre,
+            nombre: producto.nombre,
 
-            precio:
-                producto.precio,
+            precio: producto.precio,
 
-            cantidad:
-                1
+            cantidad: 1
 
         });
 
@@ -1189,74 +955,75 @@ function agregarAlCarrito(id) {
 
     guardarCarrito();
 
-    mostrarCarrito();
-
-    actualizarContador();
+    alert(
+        producto.nombre +
+        " fue agregado al carrito."
+    );
 
 }
 
 
+/* =====================================================
+   GUARDAR CARRITO
+===================================================== */
+
+function guardarCarrito() {
+
+    localStorage.setItem(
+        "carritoLoDeLuisa",
+        JSON.stringify(carrito)
+    );
+
+}
+
+
+/* =====================================================
+   MOSTRAR CARRITO
+===================================================== */
 
 function mostrarCarrito() {
 
-
-    const container =
+    const contenedor =
         document.getElementById(
-            "carritoContainer"
+            "carritoContenido"
         );
 
 
-    container.innerHTML = "";
+    if (carrito.length === 0) {
 
-
-    let total = 0;
-
-
-    if (
-        carrito.length === 0
-    ) {
-
-        container.innerHTML =
-            "<p>El carrito está vacío.</p>";
-
+        contenedor.innerHTML = `
+            <p>
+                🛒 El carrito está vacío.
+            </p>
+        `;
 
         document.getElementById(
             "totalCarrito"
         ).textContent = "0";
 
-
         return;
-
     }
 
 
-    carrito.forEach(
-        function(item, indice) {
+    contenedor.innerHTML = "";
 
 
-            const subtotal =
-                Number(
-                    item.precio
-                ) *
-                Number(
-                    item.cantidad
-                );
+    let total = 0;
 
 
-            total += subtotal;
+    carrito.forEach(item => {
+
+        const subtotal =
+            item.precio *
+            item.cantidad;
 
 
-            const div =
-                document.createElement(
-                    "div"
-                );
+        total += subtotal;
 
 
-            div.className =
-                "carrito-item";
+        contenedor.innerHTML += `
 
-
-            div.innerHTML = `
+            <div class="carrito-item">
 
                 <div>
 
@@ -1271,92 +1038,124 @@ function mostrarCarrito() {
 
                     <br>
 
-                    Subtotal:
-                    $${subtotal.toLocaleString(
-                        "es-AR"
-                    )}
+                    Precio:
+                    $${formatearNumero(item.precio)}
 
                 </div>
 
 
                 <div>
 
+                    <strong>
+                        $${formatearNumero(subtotal)}
+                    </strong>
+
+                    <br><br>
+
                     <button
-                        class="btn-editar"
-                        onclick="aumentarCantidad(${indice})"
+                        class="boton boton-editar"
+                        onclick="aumentarCantidad(${item.id})"
                     >
                         +
                     </button>
 
 
                     <button
-                        class="btn-editar"
-                        onclick="disminuirCantidad(${indice})"
+                        class="boton boton-editar"
+                        onclick="disminuirCantidad(${item.id})"
                     >
                         -
                     </button>
 
 
                     <button
-                        class="btn-danger"
-                        onclick="eliminarDelCarrito(${indice})"
+                        class="boton boton-eliminar"
+                        onclick="eliminarDelCarrito(${item.id})"
                     >
                         🗑️
                     </button>
 
                 </div>
 
-            `;
+            </div>
 
+        `;
 
-            container.appendChild(
-                div
-            );
-
-        }
-    );
+    });
 
 
     document.getElementById(
         "totalCarrito"
     ).textContent =
-        total.toLocaleString(
-            "es-AR"
-        );
+        formatearNumero(total);
 
 }
 
 
+/* =====================================================
+   AUMENTAR CANTIDAD
+===================================================== */
 
-function aumentarCantidad(indice) {
-
-
-    const item =
-        carrito[indice];
-
+function aumentarCantidad(id) {
 
     const producto =
         productos.find(
-            p =>
-                p.id == item.id
+            p => p.id === id
         );
 
 
-    if (
-        producto &&
-        item.cantidad <
-        producto.stock
-    ) {
+    const item =
+        carrito.find(
+            i => i.id === id
+        );
 
-        item.cantidad++;
 
-    } else {
+    if (!producto || !item) return;
+
+
+    if (item.cantidad >= producto.stock) {
 
         alert(
-            "❌ No hay más stock disponible."
+            "No podés superar el stock disponible."
         );
 
         return;
+    }
+
+
+    item.cantidad++;
+
+    guardarCarrito();
+
+    mostrarCarrito();
+
+}
+
+
+/* =====================================================
+   DISMINUIR CANTIDAD
+===================================================== */
+
+function disminuirCantidad(id) {
+
+    const item =
+        carrito.find(
+            i => i.id === id
+        );
+
+
+    if (!item) return;
+
+
+    item.cantidad--;
+
+
+    if (item.cantidad <= 0) {
+
+        carrito =
+            carrito.filter(
+                i => i.id !== id
+            );
 
     }
 
@@ -1365,108 +1164,41 @@ function aumentarCantidad(indice) {
 
     mostrarCarrito();
 
-    actualizarContador();
-
 }
 
 
+/* =====================================================
+   ELIMINAR DEL CARRITO
+===================================================== */
 
-function disminuirCantidad(indice) {
+function eliminarDelCarrito(id) {
 
-
-    if (
-        carrito[indice].cantidad > 1
-    ) {
-
-        carrito[indice].cantidad--;
-
-    } else {
-
-        carrito.splice(
-            indice,
-            1
+    carrito =
+        carrito.filter(
+            item => item.id !== id
         );
-
-    }
 
 
     guardarCarrito();
 
     mostrarCarrito();
 
-    actualizarContador();
-
 }
-
-
-
-function eliminarDelCarrito(indice) {
-
-
-    carrito.splice(
-        indice,
-        1
-    );
-
-
-    guardarCarrito();
-
-    mostrarCarrito();
-
-    actualizarContador();
-
-}
-
-
-
-function actualizarContador() {
-
-
-    const cantidad =
-        carrito.reduce(
-
-            (
-                total,
-                item
-            ) =>
-
-                total +
-                Number(
-                    item.cantidad
-                ),
-
-            0
-
-        );
-
-
-    document.getElementById(
-        "contadorCarrito"
-    ).textContent =
-        cantidad;
-
-}
-
 
 
 /* =====================================================
    WHATSAPP
 ===================================================== */
 
+function enviarPedidoWhatsApp() {
 
-function enviarWhatsApp() {
-
-
-    if (
-        carrito.length === 0
-    ) {
+    if (carrito.length === 0) {
 
         alert(
-            "❌ El carrito está vacío."
+            "El carrito está vacío."
         );
 
         return;
-
     }
 
 
@@ -1477,31 +1209,32 @@ function enviarWhatsApp() {
     let total = 0;
 
 
-    carrito.forEach(
-        function(item) {
+    carrito.forEach(item => {
+
+        const subtotal =
+            item.precio *
+            item.cantidad;
 
 
-            const subtotal =
-                Number(
-                    item.precio
-                ) *
-                Number(
-                    item.cantidad
-                );
+        total += subtotal;
 
 
-            total += subtotal;
+        mensaje +=
+            "• " +
+            item.nombre +
+            " x" +
+            item.cantidad +
+            " - $" +
+            formatearNumero(subtotal) +
+            "%0A";
 
-
-            mensaje +=
-                `• ${item.nombre} x${item.cantidad} = $${subtotal}%0A`;
-
-        }
-    );
+    });
 
 
     mensaje +=
-        `%0A*Total: $${total}*`;
+        "%0A*Total: $" +
+        formatearNumero(total) +
+        "*";
 
 
     const numeroWhatsApp =
@@ -1509,7 +1242,10 @@ function enviarWhatsApp() {
 
 
     const url =
-        `https://wa.me/${numeroWhatsApp}?text=${mensaje}`;
+        "https://wa.me/" +
+        numeroWhatsApp +
+        "?text=" +
+        mensaje;
 
 
     window.open(
@@ -1520,14 +1256,11 @@ function enviarWhatsApp() {
 }
 
 
-
 /* =====================================================
-   ADMIN
+   LOGIN ADMIN
 ===================================================== */
 
-
-function loginAdmin() {
-
+function iniciarSesionAdmin() {
 
     const usuario =
         document.getElementById(
@@ -1541,12 +1274,20 @@ function loginAdmin() {
         ).value;
 
 
-    /*
-       POR AHORA mantenemos el acceso
-       que ya venías usando.
+    const mensaje =
+        document.getElementById(
+            "mensajeLogin"
+        );
 
-       Más adelante lo reemplazaremos
-       por Supabase Auth.
+
+    /*
+        IMPORTANTE:
+
+        Esto es solamente el login
+        visual del sitio.
+
+        Más adelante lo vamos a reemplazar
+        por Supabase Auth.
     */
 
 
@@ -1555,21 +1296,17 @@ function loginAdmin() {
         password === "ADM"
     ) {
 
-
-        usuarioLogueado =
-            true;
+        adminLogueado = true;
 
 
         document.getElementById(
-            "loginAdmin"
-        ).style.display =
-            "none";
+            "adminLogin"
+        ).style.display = "none";
 
 
         document.getElementById(
-            "panelAdmin"
-        ).style.display =
-            "block";
+            "adminPanel"
+        ).style.display = "block";
 
 
         mostrarAdmin();
@@ -1577,155 +1314,141 @@ function loginAdmin() {
 
     } else {
 
+        mensaje.className =
+            "mensaje error";
 
-        alert(
-            "❌ Usuario o contraseña incorrectos."
-        );
+        mensaje.textContent =
+            "❌ Usuario o contraseña incorrectos.";
 
     }
 
 }
 
 
+/* =====================================================
+   CERRAR SESION
+===================================================== */
 
 function cerrarSesionAdmin() {
 
-
-    usuarioLogueado =
-        false;
+    adminLogueado = false;
 
 
     document.getElementById(
-        "loginAdmin"
-    ).style.display =
-        "block";
+        "adminLogin"
+    ).style.display = "block";
 
 
     document.getElementById(
-        "panelAdmin"
-    ).style.display =
-        "none";
+        "adminPanel"
+    ).style.display = "none";
+
+
+    document.getElementById(
+        "usuarioAdmin"
+    ).value = "";
+
+
+    document.getElementById(
+        "passwordAdmin"
+    ).value = "";
 
 }
 
 
+/* =====================================================
+   MOSTRAR ADMIN
+===================================================== */
 
 function mostrarAdmin() {
 
-
-    if (!usuarioLogueado) {
-
-        return;
-
-    }
+    if (!adminLogueado) return;
 
 
-    const container =
+    const lista =
         document.getElementById(
-            "adminProductos"
+            "listaAdmin"
         );
 
 
-    container.innerHTML = "";
+    if (!lista) return;
 
 
-    productos.forEach(
-        function(producto) {
+    lista.innerHTML = "";
 
 
-            const div =
-                document.createElement(
-                    "div"
-                );
+    productos.forEach(producto => {
 
+        lista.innerHTML += `
 
-            div.className =
-                "admin-producto";
-
-
-            div.innerHTML = `
+            <div class="admin-producto">
 
                 <strong>
                     ${producto.nombre}
                 </strong>
 
-                <br><br>
-
                 Precio:
-                $${Number(
-                    producto.precio
-                ).toLocaleString(
-                    "es-AR"
-                )}
+                $${formatearNumero(producto.precio)}
 
                 <br>
 
                 Stock:
                 ${producto.stock}
 
-                <br>
-
-                Categoría:
-                ${producto.categoria || "-"}
-
-
-                <div class="acciones">
-
+                <div class="admin-botones">
 
                     <button
-                        class="btn-editar"
+                        class="boton boton-editar"
                         onclick="editarProducto(${producto.id})"
                     >
-
                         ✏️ Editar
-
                     </button>
 
 
                     <button
-                        class="btn-danger"
+                        class="boton boton-eliminar"
                         onclick="eliminarProducto(${producto.id})"
                     >
-
                         🗑️ Eliminar
-
                     </button>
-
 
                 </div>
 
-            `;
+            </div>
 
+        `;
 
-            container.appendChild(
-                div
-            );
-
-        }
-    );
+    });
 
 }
-
 
 
 /* =====================================================
    AGREGAR PRODUCTO
 ===================================================== */
 
-
 async function agregarProducto() {
+
+    if (!adminLogueado) {
+
+        alert(
+            "Primero iniciá sesión."
+        );
+
+        return;
+    }
 
 
     const nombre =
         document.getElementById(
-            "nombreProducto"
+            "nuevoNombre"
         ).value.trim();
 
 
     const precio =
         Number(
             document.getElementById(
-                "precioProducto"
+                "nuevoPrecio"
             ).value
         );
 
@@ -1733,92 +1456,74 @@ async function agregarProducto() {
     const stock =
         Number(
             document.getElementById(
-                "stockProducto"
+                "nuevoStock"
             ).value
         );
 
 
-    const categoria =
+    const imagen =
         document.getElementById(
-            "categoriaProducto"
+            "nuevaImagen"
         ).value.trim();
 
 
-    const imagen =
+    const categoria =
         document.getElementById(
-            "imagenProducto"
+            "nuevaCategoria"
         ).value.trim();
 
 
     const descripcion =
         document.getElementById(
-            "descripcionProducto"
+            "nuevaDescripcion"
         ).value.trim();
 
 
-    if (
-        !nombre ||
-        precio <= 0 ||
-        stock < 0
-    ) {
+    if (!nombre || !precio || stock < 0) {
 
         alert(
-            "❌ Completá correctamente los datos."
+            "Completá correctamente nombre, precio y stock."
         );
 
         return;
-
     }
 
 
-    const {
-        data,
-        error
-    } = await clienteSupabase
+    const { data, error } =
+        await clienteSupabase
+            .from("Productos")
+            .insert([{
 
-        .from("Productos")
+                Nombre: nombre,
 
-        .insert([{
+                Precio: precio,
 
-            Nombre:
-                nombre,
+                stock: stock,
 
-            Precio:
-                precio,
+                imagen: imagen || null,
 
-            stock:
-                stock,
+                categoria: categoria || null,
 
-            imagen:
-                imagen || null,
+                descripcion: descripcion || null
 
-            categoria:
-                categoria,
-
-            descripcion:
-                descripcion
-
-        }])
-
-        .select();
+            }])
+            .select();
 
 
     if (error) {
 
-
         console.error(
-            "❌ Error al agregar:",
+            "Error agregando producto:",
             error
         );
 
 
         alert(
-            "❌ No se pudo agregar el producto.\n\nRevisá la consola F12."
+            "❌ No se pudo agregar el producto.\n\n" +
+            error.message
         );
 
-
         return;
-
     }
 
 
@@ -1827,7 +1532,34 @@ async function agregarProducto() {
     );
 
 
-    limpiarFormulario();
+    document.getElementById(
+        "nuevoNombre"
+    ).value = "";
+
+
+    document.getElementById(
+        "nuevoPrecio"
+    ).value = "";
+
+
+    document.getElementById(
+        "nuevoStock"
+    ).value = "";
+
+
+    document.getElementById(
+        "nuevaImagen"
+    ).value = "";
+
+
+    document.getElementById(
+        "nuevaCategoria"
+    ).value = "";
+
+
+    document.getElementById(
+        "nuevaDescripcion"
+    ).value = "";
 
 
     await cargarProductosDesdeSupabase();
@@ -1835,27 +1567,19 @@ async function agregarProducto() {
 }
 
 
-
 /* =====================================================
    EDITAR PRODUCTO
 ===================================================== */
 
-
 async function editarProducto(id) {
-
 
     const producto =
         productos.find(
-            p =>
-                p.id == id
+            p => p.id === id
         );
 
 
-    if (!producto) {
-
-        return;
-
-    }
+    if (!producto) return;
 
 
     const nuevoNombre =
@@ -1865,13 +1589,7 @@ async function editarProducto(id) {
         );
 
 
-    if (
-        nuevoNombre === null
-    ) {
-
-        return;
-
-    }
+    if (nuevoNombre === null) return;
 
 
     const nuevoPrecio =
@@ -1881,76 +1599,77 @@ async function editarProducto(id) {
         );
 
 
-    if (
-        nuevoPrecio === null
-    ) {
-
-        return;
-
-    }
+    if (nuevoPrecio === null) return;
 
 
     const nuevoStock =
         prompt(
-            "Stock disponible:",
+            "Stock:",
             producto.stock
         );
 
 
+    if (nuevoStock === null) return;
+
+
+    const precio =
+        Number(nuevoPrecio);
+
+
+    const stock =
+        Number(nuevoStock);
+
+
     if (
-        nuevoStock === null
+        !nuevoNombre.trim() ||
+        isNaN(precio) ||
+        isNaN(stock) ||
+        stock < 0
     ) {
 
-        return;
+        alert(
+            "Los datos ingresados no son válidos."
+        );
 
+        return;
     }
 
 
-    const {
-        error
-    } = await clienteSupabase
+    const { error } =
+        await clienteSupabase
+            .from("Productos")
+            .update({
 
-        .from("Productos")
+                Nombre:
+                    nuevoNombre.trim(),
 
-        .update({
+                Precio:
+                    precio,
 
-            Nombre:
-                nuevoNombre,
+                stock:
+                    stock
 
-            Precio:
-                Number(
-                    nuevoPrecio
-                ),
-
-            stock:
-                Number(
-                    nuevoStock
-                )
-
-        })
-
-        .eq(
-            "id",
-            id
-        );
+            })
+            .eq(
+                "id",
+                id
+            );
 
 
     if (error) {
 
-
         console.error(
-            "❌ Error al editar:",
+            "Error editando producto:",
             error
         );
 
 
         alert(
-            "❌ No se pudo modificar el producto.\n\nRevisá la consola F12."
+            "❌ No se pudo editar el producto.\n\n" +
+            error.message
         );
 
-
         return;
-
     }
 
 
@@ -1964,79 +1683,61 @@ async function editarProducto(id) {
 }
 
 
-
 /* =====================================================
    ELIMINAR PRODUCTO
 ===================================================== */
 
-
 async function eliminarProducto(id) {
-
 
     const producto =
         productos.find(
-            p =>
-                p.id == id
+            p => p.id === id
         );
 
 
-    if (!producto) {
-
-        return;
-
-    }
+    if (!producto) return;
 
 
     const confirmar =
         confirm(
-
-            `¿Seguro que querés eliminar "${producto.nombre}"?`
-
+            "¿Seguro que querés eliminar " +
+            producto.nombre +
+            "?"
         );
 
 
-    if (!confirmar) {
-
-        return;
-
-    }
+    if (!confirmar) return;
 
 
-    const {
-        error
-    } = await clienteSupabase
-
-        .from("Productos")
-
-        .delete()
-
-        .eq(
-            "id",
-            id
-        );
+    const { error } =
+        await clienteSupabase
+            .from("Productos")
+            .delete()
+            .eq(
+                "id",
+                id
+            );
 
 
     if (error) {
 
-
         console.error(
-            "❌ Error al eliminar:",
+            "Error eliminando producto:",
             error
         );
 
 
         alert(
-            "❌ No se pudo eliminar el producto.\n\nRevisá la consola F12."
+            "❌ No se pudo eliminar el producto.\n\n" +
+            error.message
         );
 
-
         return;
-
     }
 
 
     alert(
-        "🗑️ Producto eliminado correctamente."
+        "✅ Producto eliminado."
     );
 
 
@@ -2045,64 +1746,36 @@ async function eliminarProducto(id) {
 }
 
 
-
 /* =====================================================
-   LIMPIAR FORMULARIO
+   FORMATEAR NUMEROS
 ===================================================== */
 
+function formatearNumero(numero) {
 
-function limpiarFormulario() {
-
-
-    document.getElementById(
-        "nombreProducto"
-    ).value = "";
-
-
-    document.getElementById(
-        "precioProducto"
-    ).value = "";
-
-
-    document.getElementById(
-        "stockProducto"
-    ).value = "";
-
-
-    document.getElementById(
-        "categoriaProducto"
-    ).value = "";
-
-
-    document.getElementById(
-        "imagenProducto"
-    ).value = "";
-
-
-    document.getElementById(
-        "descripcionProducto"
-    ).value = "";
+    return Number(numero).toLocaleString(
+        "es-AR"
+    );
 
 }
-
 
 
 /* =====================================================
    INICIO
 ===================================================== */
 
+document.addEventListener(
+    "DOMContentLoaded",
+    function() {
 
-cargarProductosDesdeSupabase();
+        cargarProductosDesdeSupabase();
 
-mostrarCarrito();
+        mostrarCarrito();
 
-actualizarContador();
-
+    }
+);
 
 </script>
 
-
 </body>
-
 </html>
 ```
