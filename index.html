@@ -2595,124 +2595,81 @@ async function editarProducto(id) {
 
     if (!adminLogueado) {
 
-        
-async function editarProducto(id) {
-    if (!adminLogueado) {
-        alert("Tenés que iniciar sesión.");
+        alert(
+            "Tenés que iniciar sesión."
+        );
+
         return;
+
     }
 
-    const producto = productos.find(p => p.id === id);
 
-    if (!producto) {
-        alert("No se encontró el producto.");
+    const producto =
+        productos.find(
+            function(p) {
+
+                return p.id === id;
+
+            }
+        );
+
+
+    if (!producto)
         return;
-    }
 
-    // Pedir los datos actuales para poder modificarlos
-    const nuevoNombre = prompt(
-        "Nombre del producto:",
-        producto.nombre
-    );
 
-    if (nuevoNombre === null) return;
+    const nuevoNombre =
+        prompt(
+            "Nombre del producto:",
+            producto.nombre
+        );
 
-    const nuevoPrecio = prompt(
-        "Precio:",
-        producto.precio
-    );
-
-    if (nuevoPrecio === null) return;
-
-    const nuevoStock = prompt(
-        "Stock disponible:",
-        producto.stock
-    );
-
-    if (nuevoStock === null) return;
-
-    const nuevaImagen = prompt(
-        "URL de la imagen:",
-        producto.imagen || ""
-    );
-
-    if (nuevaImagen === null) return;
-
-    const nuevaCategoria = prompt(
-        "Categoría del producto:",
-        producto.categoria || ""
-    );
-
-    if (nuevaCategoria === null) return;
-
-    const nuevaDescripcion = prompt(
-        "Descripción del producto:",
-        producto.descripcion || ""
-    );
-
-    if (nuevaDescripcion === null) return;
-
-    // Validar los datos antes de guardar
-    const nombre = nuevoNombre.trim();
-    const precio = Number(nuevoPrecio);
-    const stock = Number(nuevoStock);
 
     if (
-        !nombre ||
-        nuevoPrecio.trim() === "" ||
-        !Number.isFinite(precio) ||
-        precio <= 0 ||
-        nuevoStock.trim() === "" ||
-        !Number.isInteger(stock) ||
-        stock < 0
+        nuevoNombre === null
+    )
+        return;
+
+
+    const nuevoPrecio =
+        prompt(
+            "Precio:",
+            producto.precio
+        );
+
+
+    if (
+        nuevoPrecio === null
+    )
+        return;
+
+
+    const nuevoStock =
+        prompt(
+            "Stock:",
+            producto.stock
+        );
+
+
+    if (
+        nuevoStock === null
+    )
+        return;
+
+
+    if (
+        !nuevoNombre.trim() ||
+        Number(nuevoPrecio) <= 0 ||
+        Number(nuevoStock) < 0
     ) {
-        alert(
-            "Revisá los datos: el nombre es obligatorio, " +
-            "el precio debe ser mayor que cero y el stock " +
-            "debe ser un número entero igual o mayor que cero."
-        );
-        return;
-    }
-
-    // Actualizar todos los campos en Supabase
-    const { data, error } = await clienteSupabase
-        .from("productos")
-        .update({
-            Nombre: nombre,
-            Precio: precio,
-            stock: stock,
-            imagen: nuevaImagen.trim() || null,
-            categoria: nuevaCategoria.trim() || null,
-            descripcion: nuevaDescripcion.trim() || null
-        })
-        .eq("id", id)
-        .select("id");
-
-    if (error) {
-        console.error("Error editando producto:", error);
 
         alert(
-            "No se pudo editar el producto.\n\n" +
-            error.message
+            "Los datos ingresados no son válidos."
         );
+
         return;
+
     }
-
-    if (!data || data.length === 0) {
-        alert(
-            "No se modificó ningún producto. " +
-            "Verificá los permisos de actualización en Supabase."
-        );
-        return;
-    }
-
-    alert("✅ Producto actualizado correctamente.");
-
-    // Recargar el catálogo y la administración
-    await cargarProductosDesdeSupabase();
-}
-
-
 
 
     const {
