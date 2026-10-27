@@ -1,0 +1,17 @@
+{
+  "id": "./",
+  "name": "Lo de Luisa - Administración",
+  "short_name": "Lo de Luisa",
+  "description": "Panel administrativo de Lo de Luisa",
+  "lang": "es-AR",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#F6F0E4",
+  "theme_color": "#102A43",
+  "icons": [
+    {"src": "./icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any maskable"},
+    {"src": "./icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable"}
+  ]
+}
