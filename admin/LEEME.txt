@@ -1,0 +1,22 @@
+LO DE LUISA — PANEL ADMINISTRATIVO INSTALABLE
+
+CONTENIDO
+- index.html: el panel administrativo existente, con los datos de conexión Supabase proporcionados.
+- manifest.webmanifest y sw.js: instalación PWA y caché básica de la interfaz.
+- logo.png e icons/: iconos.
+
+PUBLICAR SIN MODIFICAR LA TIENDA
+1. En el repositorio de GitHub, abrí la carpeta admin que empezaste a crear.
+2. Subí TODOS los archivos y carpetas que están dentro de este paquete a admin/ (no subas la carpeta contenedora lo_de_luisa_pwa como una subcarpeta adicional).
+3. La estructura del repositorio debe quedar: index.html (público, sin tocar) y admin/index.html, admin/manifest.webmanifest, admin/sw.js, admin/logo.png, admin/icons/icon-192.png, admin/icons/icon-512.png.
+4. Confirmá los cambios (Commit changes). Si GitHub Pages ya está habilitado para el repositorio, esperá a que publique.
+5. Abrí https://onlyweb90.github.io/lodeluisa/admin/ para probar. Si el repositorio usa otro dominio o nombre, la URL será la correspondiente a tu Pages.
+
+INSTALAR
+- Android: abrir el enlace en Chrome y elegir Instalar app o Añadir a pantalla de inicio.
+- iPhone: abrir el enlace en Safari, tocar Compartir y luego Añadir a pantalla de inicio.
+
+IMPORTANTE
+- El panel usa la misma tabla Supabase productos; los cambios de stock hechos por ventas deberían verse en la tienda si la tienda consulta esa misma tabla. No modifica el index.html público.
+- La clave sb_publishable está diseñada para uso en navegador, pero el acceso debe estar protegido por Supabase Auth y políticas RLS. Nunca publiques una service_role/secret key.
+- La app necesita internet para autenticar y consultar Supabase. La caché solo ayuda a abrir la interfaz; no guarda datos de negocio para usarlos sin conexión.

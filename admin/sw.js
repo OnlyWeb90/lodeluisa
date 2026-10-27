@@ -1,5 +1,5 @@
-const CACHE_NAME = 'lo-de-luisa-shell-v1';
-const SHELL = ['./', './index.html', './manifest.webmanifest', './logo.png', './icons/icon-192.png', './icons/icon-512.png'];
+const CACHE_NAME = 'lo-de-luisa-shell-v2';
+const SHELL = ['./', './index.html', './manifest.webmanifest', './logo.png', './icons/icon-192.png', './icons/icon-512.png', './icons/apple-touch-icon.png'];
 self.addEventListener('install', event => {
   event.waitUntil(caches.open(CACHE_NAME).then(cache => cache.addAll(SHELL)).then(() => self.skipWaiting()));
 });
